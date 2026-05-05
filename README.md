@@ -2,8 +2,8 @@
 
 | File | Page Size | Type |
 |---|---|---|
-| `Menu-SRA4.html/.pdf` | SRA4 (225×320mm) | À la carte (main) |
-| `A-La-Carte-menu-sra4.html/.pdf` | SRA4 (225×320mm) | À la carte (May 6th) |
+| `Main-Menu-SRA4.html/.pdf` | SRA4 (225×320mm) | Main à la carte |
+| `Alacarte-Menu-SRA4.html/.pdf` | SRA4 (225×320mm) | À la carte (alternate) |
 | `Sunday-Menu-A4.html/.pdf` | A4 (210×297mm) | Sunday menu (roasts) |
 | `Bar-Menu-A5.html/.pdf` | A5 (148×210mm) | Bar menu |
 | `Lunch-Specials-A5.html/.pdf` | A5 | Lunch specials |
@@ -232,8 +232,8 @@ python3 scripts/a5.py menus/Bar-Menu-A5.html
 
 ```bash
 # À la carte (SRA4):
-python3 scripts/sra4.py menus/Menu-SRA4.html
-python3 scripts/sra4.py menus/A-La-Carte-menu-sra4.html
+python3 scripts/sra4.py menus/Main-Menu-SRA4.html
+python3 scripts/sra4.py menus/Alacarte-Menu-SRA4.html
 
 # Sunday menu (A4):
 python3 scripts/a4.py menus/Sunday-Menu-A4.html

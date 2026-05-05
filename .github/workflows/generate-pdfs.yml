@@ -1,0 +1,75 @@
+name: Generate PDFs from HTML Menus
+
+on:
+  push:
+    paths:
+      - 'menus/*.html'
+  workflow_dispatch:
+
+jobs:
+  generate-pdfs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install playwright pypdf
+          python -m playwright install chromium
+          python -m playwright install-deps chromium
+
+      - name: Detect changed HTML files and generate PDFs
+        run: |
+          # Get list of changed HTML files in menus/
+          changed_files=$(git diff --name-only HEAD~1 HEAD | grep '^menus/.*\.html$' || true)
+
+          if [ -z "$changed_files" ]; then
+            echo "No HTML files changed"
+            exit 0
+          fi
+
+          echo "Changed HTML files:"
+          echo "$changed_files"
+
+          # Process each changed file
+          for file in $changed_files; do
+            echo "Processing: $file"
+
+            # Determine which script to use based on filename
+            if [[ "$file" == *"-SRA4.html" ]]; then
+              script="scripts/sra4.py"
+            elif [[ "$file" == *"-A4.html" ]]; then
+              script="scripts/a4.py"
+            elif [[ "$file" == *"-A5.html" ]]; then
+              script="scripts/a5.py"
+            else
+              echo "Warning: Could not determine page size for $file, skipping"
+              continue
+            fi
+
+            echo "Using script: $script"
+            python "$script" "$file"
+          done
+
+      - name: Commit and push PDFs
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+
+          # Check if there are PDF changes
+          if git diff --quiet menus/*.pdf; then
+            echo "No PDF changes to commit"
+          else
+            git add menus/*.pdf
+            git commit -m "Auto-generate PDFs from updated HTML menus"
+            git push
+          fi
