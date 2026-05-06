@@ -8,11 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Cormorant+SC:wght@500;600;700&display=swap" rel="stylesheet">
 
-<!-- ============================================================
-     EDIT THE MENU HERE
-     ============================================================
-     Page size: A5 PORTRAIT (148mm × 210mm)
-     ============================================================ -->
 <script>
 const MENU = {
   header: {
@@ -67,7 +62,6 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ---------- A5 page container (148 x 210mm) ---------- */
 .menu-page {
   width: 148mm;
   min-height: 210mm;
@@ -80,7 +74,6 @@ html, body {
   position: relative;
 }
 
-/* Decorative corner marks */
 .menu-page::before,
 .menu-page::after {
   content: '';
@@ -91,14 +84,8 @@ html, body {
   opacity: 0.25;
   pointer-events: none;
 }
-.menu-page::before {
-  top: 6mm; left: 6mm;
-  border-right: none; border-bottom: none;
-}
-.menu-page::after {
-  bottom: 6mm; right: 6mm;
-  border-left: none; border-top: none;
-}
+.menu-page::before { top: 6mm; left: 6mm; border-right: none; border-bottom: none; }
+.menu-page::after  { bottom: 6mm; right: 6mm; border-left: none; border-top: none; }
 
 /* ========== HEADER ========== */
 .page-header {
@@ -174,16 +161,24 @@ html, body {
 /* ========== MENU BODY ========== */
 .menu-body { flex: 1; }
 
-/* ---------- Section headings ---------- */
-.section {
-  margin-bottom: 5mm;
-}
+.section { margin-bottom: 5mm; }
 .section:last-child { margin-bottom: 0; }
 
+/* ---------- Section headings — flexbox flanking lines ---------- */
 .section-heading {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 4mm;
   margin-bottom: 3.5mm;
-  position: relative;
+}
+
+.section-heading::before,
+.section-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rust);
+  opacity: 0.3;
 }
 
 .section-heading h2 {
@@ -192,32 +187,13 @@ html, body {
   font-size: 11pt;
   letter-spacing: 0.45em;
   color: var(--rust);
-  display: inline-block;
-  padding: 0 5mm;
-  background: transparent;
-  position: relative;
-  z-index: 1;
+  white-space: nowrap;
 }
 
-.section-heading::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 15%;
-  right: 15%;
-  height: 1px;
-  background: var(--rust);
-  opacity: 0.3;
-  z-index: 0;
-}
+/* ---------- Dishes ---------- */
+.dishes-list { text-align: center; }
 
-.dishes-list {
-  text-align: center;
-}
-
-.dish {
-  margin-bottom: 4mm;
-}
+.dish { margin-bottom: 4mm; }
 .dish:last-child { margin-bottom: 0; }
 
 .dish-name-price {
@@ -273,28 +249,6 @@ html, body {
   letter-spacing: 0.02em;
 }
 
-/* ---------- Add-ons strip ---------- */
-.addons {
-  text-align: center;
-  margin-top: 5mm;
-  padding-top: 4mm;
-  padding-bottom: 2mm;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 9pt;
-  color: var(--grey);
-  line-height: 1.4;
-}
-
-.addons-price {
-  font-style: normal;
-  font-weight: 600;
-  color: var(--rust);
-  font-variant-numeric: tabular-nums;
-}
-
 /* ========== FOOTER ========== */
 .page-footer {
   margin-top: 4mm;
@@ -329,12 +283,8 @@ html, body {
   font-weight: 400;
 }
 
-/* ========== Print ========== */
 @media print {
-  @page {
-    size: 148mm 210mm portrait;
-    margin: 0;
-  }
+  @page { size: 148mm 210mm portrait; margin: 0; }
   html, body { background: white; }
   .menu-page {
     margin: 0;
@@ -398,7 +348,6 @@ document.getElementById('h-wordmark').textContent = MENU.header.wordmark;
 document.getElementById('h-location').textContent = MENU.header.location;
 document.getElementById('h-subtitle').textContent = MENU.header.subtitle;
 
-// Price tag - split the number out so we can style it in rust
 const priceTagHtml = MENU.header.priceTag.replace(/(\d+(?:\.\d+)?)\s*$/, '<span class="price-tag-num">$1</span>');
 document.getElementById('h-price').innerHTML = priceTagHtml;
 
