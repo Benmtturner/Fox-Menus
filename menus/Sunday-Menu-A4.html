@@ -206,9 +206,19 @@ html, body {
 .section:last-child { margin-bottom: 0; }
 
 .section-heading {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 4mm;
   margin-bottom: 2.5mm;
-  position: relative;
+}
+
+.section-heading::before,
+.section-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rust);
+  opacity: 0.3;
 }
 
 .section-heading h2 {
@@ -217,23 +227,7 @@ html, body {
   font-size: 13pt;
   letter-spacing: 0.45em;
   color: var(--rust);
-  display: inline-block;
-  padding: 0 6mm;
-  background: white;
-  position: relative;
-  z-index: 1;
-}
-
-.section-heading::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 10%;
-  right: 10%;
-  height: 1px;
-  background: var(--rust);
-  opacity: 0.3;
-  z-index: 0;
+  white-space: nowrap;
 }
 
 /* ---------- Two column layout ---------- */
