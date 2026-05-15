@@ -2,7 +2,7 @@
 <html lang="en-GB">
 <head>
 <meta charset="UTF-8">
-<title>The Fox at Walton — Menu (SRA4)</title>
+<title>The Fox at Walton — Menu</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
 <!-- ============================================================
      EDIT THE MENU HERE
      ============================================================
-     Page size: SRA4 PORTRAIT (225mm × 320mm)
+     Page size: B4 PORTRAIT (250mm × 355mm)
 
      - HEADER:   logo / pub name / tagline at top
      - MENU:     starters, mains, sides — centre band
@@ -33,11 +33,18 @@ const MENU = {
     subtitle: "Spring 2026", // change with each menu refresh
   },
 
+  // ---------- WHILE YOU DECIDE (appetisers) ----------
+  appetisers: [
+    { name: "Bread & Butter", price: "4", desc: "Fresh homemade bread, whipped salted butter and gochujang hot honey" },
+    { name: "Olives", price: "3", desc: "Mixed marinated olives" },
+    { name: "Pigs in Blankets", price: "6", desc: "Tossed in honey and sesame" },
+  ],
+
   // ---------- STARTERS ----------
   starters: [
-    { name: "Bread & Butter", price: "6.5", desc: "Freshly baked home-made breads, whipped butter and dips" },
+    { name: "Seared King Scallops", price: "16", desc: "Celeriac, apple and home-made black pudding" },
     { name: "Whipped Feta & Nduja", price: "8", desc: "Toasted sourdough and pickles" },
-    { name: "Soup Of The Day", price: "8", desc: "Fresh home-made bread & whipped butter" },
+    { name: "Soup of the Day", price: "8", desc: "Fresh home-made bread & whipped butter" },
     { name: "Pea & Asparagus Arancini", price: "8", desc: "Wild garlic aioli and parmesan" },
     { name: "Pan Fried King Prawns & Chorizo", price: "10", desc: "Garlic butter, cherry tomatoes, baby spinach and toasted sourdough" },
     { name: "Duck & Port Pate", price: "9", desc: "Toasted home-made bread, red onion jam, whipped butter" },
@@ -46,25 +53,25 @@ const MENU = {
 
   // ---------- MAINS ----------
   mains: [
-    { name: "Pan Seared Hallibut", price: "29", desc: "Creamy seafood risotto, samphire, lemon and tarragon butter" },
+    { name: "Pan Seared Salmon", price: "25", desc: "Creamy seafood risotto, samphire, lemon and tarragon butter" },
     { name: "Yorkshire Lamb Rump", price: "30", desc: "Jersey Royal potatoes, peas, asparagus, mint salsa verde & red wine jus" },
     { name: "Aubergine Parmigiana", price: "20", desc: "Toasted garlic bread, tomato and rocket salad" },
-    { name: "Corn Fed Chicken Supreme", price: "21", desc: "Potato gnocchi, charred baby gem, creamed peas and pancetta" },
-    { name: "Fish and Chips (regular 21 / small 15)", desc: "Fresh haddock in our crisp beer batter with triple cooked chips, lemon & mushy peas" },
-    { name: "Bangers and Mash", price: "18", desc: "Red onion marmalade & proper gravy, green beans" },
-    { name: "Pie Of The Day", price: "19", desc: "Served with buttery mash, honey & thyme roast carrots and proper gravy" },
-    { name: "10oz Sirloin Steak", price: "39", desc: "Roast portobello mushroom and confit tomato, peppercorn sauce and triple cooked chips" },
+    { name: "Corn Fed Chicken Supreme", price: "21", desc: "Wild mushroom fricassée, cheddar dauphinoise potatoes, pancetta and red wine jus" },
+    { name: "Fish & Chips", price: "<em>regular</em> 21 / <em>small</em> 15", desc: "Fresh haddock in our crisp beer batter with triple cooked chips, lemon & mushy peas" },
+    { name: "Bangers & Mash", price: "18", desc: "Red onion marmalade & proper gravy, tenderstem broccoli" },
+    { name: "Pie of the Day", price: "19", desc: "Served with buttery mash, honey & thyme roast carrots and proper gravy" },
+    { name: "10oz Sirloin Steak", price: "39", desc: "Roast portobello mushroom, confit tomato, rocket, green peppercorn sauce and triple cooked chips" },
   ],
 
   // ---------- SIDES ----------
   sides: [
-    "Buttery Mash",
+    "Whole Baby Gem, Blue Cheese Dressing & Crispy Onions",
+    "Tenderstem Broccoli & Gochujang Hot Honey",
+    "Jersey Royals & Whipped Salted Butter",
+    "Honey Roast Carrots",
+    "Cauliflower Cheese",
     "Triple Cooked Chips",
     "Onion Rings",
-    "Cauliflower Cheese",
-    "Chef's Salad",
-    "Honey Roast Carrots",
-    "Jersey Royals & Whipped Salted Butter",
   ],
   sidesPrice: "4",
 
@@ -73,7 +80,7 @@ const MENU = {
     address: "The Fox at Walton · Walton · Wetherby · LS23 7DQ",
     phone: "01937 842192",
     web: "foxatwalton.com",
-    allergyNote: "Please inform your server of any allergies or dietary requirements.  Full allergen information available on request.",
+    allergyNote: "All food is prepared in the presence of known allergens. Please inform your server of any allergies or dietary requirements.  Full allergen information available on request.",
   },
 };
 </script>
@@ -96,7 +103,7 @@ const MENU = {
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
-  background: transparent;
+  background: #E8E4DB;
   color: var(--charcoal);
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-weight: 400;
@@ -104,14 +111,13 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ---------- SRA4 page container (225 x 320mm) ---------- */
+/* ---------- B4 page container ---------- */
 .menu-page {
-  width: 225mm;
-  min-height: 320mm;
+  width: 250mm;
+  min-height: 355mm;
   margin: 20px auto;
-  padding: 12mm 18mm 8mm;
+  padding: 11mm 16mm 14mm;
   background: transparent;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -140,14 +146,14 @@ html, body {
 /* ========== HEADER ========== */
 .page-header {
   text-align: center;
-  padding-bottom: 6mm;
+  padding-bottom: 3mm;
   border-bottom: 1px solid var(--rule);
-  margin-bottom: 7mm;
+  margin-bottom: 4mm;
 }
 
 .header-flourish-top {
   font-family: 'Cormorant SC', serif;
-  font-size: 8.5pt;
+  font-size: 11pt;
   letter-spacing: 0.5em;
   color: var(--rust);
   font-weight: 500;
@@ -157,8 +163,8 @@ html, body {
 
 .fox-logo {
   display: block;
-  margin: 0 auto 1mm;
-  width: 32mm;
+  margin: 0 auto -2mm;
+  width: 34mm;
   height: auto;
   /* multiply blend mode hides the white JPEG background against the cream page.
      If you replace the logo with a transparent PNG or SVG, remove this line. */
@@ -168,7 +174,7 @@ html, body {
 .wordmark {
   font-family: 'Cormorant SC', serif;
   font-weight: 700;
-  font-size: 54pt;
+  font-size: 60pt;
   letter-spacing: 0.14em;
   color: var(--charcoal);
   line-height: 1;
@@ -178,62 +184,82 @@ html, body {
 .location {
   font-family: 'Cormorant SC', serif;
   font-weight: 500;
-  font-size: 11.5pt;
+  font-size: 12pt;
   letter-spacing: 0.4em;
   color: var(--grey);
-  margin-bottom: 2.5mm;
+  margin-bottom: 4mm;
+}
+
+.tagline-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.tagline-wrapper .rule {
+  width: 40px;
+  height: 1px;
+  background: var(--forest);
+  opacity: 0.4;
+}
+
+.tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 14pt;
+  color: var(--forest);
 }
 
 .subtitle {
   font-family: 'Cormorant SC', serif;
   font-weight: 500;
-  font-size: 8pt;
+  font-size: 9pt;
   letter-spacing: 0.4em;
   color: var(--grey-light);
-  margin-top: 0;
+  margin-top: 4mm;
 }
 
 /* ========== MENU BODY ========== */
-.menu-body { flex: 1; }
+.menu-body { }
 
-.section { margin-bottom: 6mm; }
+.section { margin-bottom: 4mm; }
 .section:last-child { margin-bottom: 0; }
 
 .section-heading {
   text-align: center;
   margin-bottom: 4mm;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8mm;
+}
+
+.section-heading::before,
+.section-heading::after {
+  content: '';
+  flex: 1;
+  max-width: 80mm;
+  height: 1px;
+  background: var(--rust);
+  opacity: 0.3;
 }
 
 .section-heading h2 {
   font-family: 'Cormorant SC', serif;
   font-weight: 600;
-  font-size: 15pt;
+  font-size: 16pt;
   letter-spacing: 0.45em;
   color: var(--rust);
-  display: inline-block;
-  padding: 0 6mm;
-  background: white;
-  position: relative;
-  z-index: 1;
-}
-
-.section-heading::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 10%;
-  right: 10%;
-  height: 1px;
-  background: var(--rust);
-  opacity: 0.3;
-  z-index: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* ---------- Two column layout ---------- */
 .dishes-two-col {
   column-count: 2;
-  column-gap: 11mm;
+  column-gap: 14mm;
 }
 
 .dishes-two-col .dish {
@@ -242,24 +268,35 @@ html, body {
   page-break-inside: avoid;
 }
 
+/* ---------- Three column layout (used for compact sections like 'While You Decide') ---------- */
+.dishes-three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0 12mm;
+}
+
+.dishes-three-col .dish {
+  break-inside: avoid;
+}
+
 /* ---------- Dishes ---------- */
 .dish {
   text-align: center;
-  margin-bottom: 3.5mm;
+  margin-bottom: 2mm;
 }
 
 .dish-name-price {
   display: inline-flex;
   align-items: baseline;
-  gap: 12px;
-  margin-bottom: 1.5mm;
+  gap: 14px;
+  margin-bottom: 2mm;
   white-space: nowrap;
 }
 
 .dish-name {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 600;
-  font-size: 11.5pt;
+  font-size: 14pt;
   color: var(--charcoal);
   letter-spacing: 0.01em;
 }
@@ -267,16 +304,22 @@ html, body {
 .dish-price {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 600;
-  font-size: 10.5pt;
+  font-size: 13pt;
   color: var(--rust);
   font-variant-numeric: tabular-nums;
   position: relative;
 }
 
+.dish-price em {
+  color: var(--charcoal);
+  font-style: normal;
+  font-weight: 400;
+}
+
 .dish-price::before {
   content: '·';
   position: absolute;
-  left: -10px;
+  left: -11px;
   color: var(--grey-light);
 }
 
@@ -284,10 +327,10 @@ html, body {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-weight: 400;
-  font-size: 8.5pt;
+  font-size: 11pt;
   color: var(--grey);
   line-height: 1.4;
-  max-width: 83mm;
+  max-width: 95mm;
   margin: 0 auto;
 }
 
@@ -295,51 +338,57 @@ html, body {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-weight: 400;
-  font-size: 7.5pt;
+  font-size: 8.5pt;
   color: var(--grey-light);
-  margin-top: 1mm;
+  margin-top: 1.5mm;
   letter-spacing: 0.02em;
 }
 
 /* ---------- Sides ---------- */
 .sides {
   text-align: center;
-  padding-top: 6mm;
-  padding-bottom: 3mm;
+  padding-top: 3mm;
+  padding-bottom: 1mm;
   border-top: 1px solid var(--rule);
 }
 
 .sides-heading-row {
   display: inline-flex;
   align-items: baseline;
-  gap: 0;
-  margin-bottom: 3mm;
+  gap: 12px;
+  margin-bottom: 2mm;
 }
 
 .sides-heading {
   font-family: 'Cormorant SC', serif;
   font-weight: 600;
-  font-size: 12pt;
+  font-size: 13pt;
   letter-spacing: 0.45em;
   color: var(--rust);
 }
 
-.sides-price-num {
+.sides-price-tag {
   font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 11pt;
+  color: var(--grey);
+}
+
+.sides-price-tag .num {
   font-style: normal;
   font-weight: 600;
-  font-size: 10.5pt;
+  font-size: 13pt;
   color: var(--rust);
   font-variant-numeric: tabular-nums;
-  margin-left: 14px;
+  margin-left: 2px;
 }
 
 .sides-list {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 10pt;
+  font-size: 10.5pt;
   color: var(--charcoal);
-  line-height: 2;
-  max-width: 170mm;
+  line-height: 1.7;
+  max-width: 200mm;
   margin: 0 auto;
   text-align: center;
 }
@@ -357,8 +406,8 @@ html, body {
 
 /* ========== FOOTER ========== */
 .page-footer {
-  margin-top: 3mm;
-  padding-top: 3mm;
+  margin-top: 2mm;
+  padding-top: 2mm;
   border-top: 1px solid var(--rule);
   text-align: center;
 }
@@ -366,23 +415,23 @@ html, body {
 .footer-allergy {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 8pt;
+  font-size: 10pt;
   color: var(--grey);
-  margin-bottom: 3mm;
-  max-width: 140mm;
+  margin-bottom: 1.5mm;
+  max-width: 160mm;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 .footer-contact {
   font-family: 'Cormorant SC', serif;
-  font-size: 7.5pt;
+  font-size: 8pt;
   letter-spacing: 0.2em;
   color: var(--forest);
   margin-bottom: 2mm;
   font-weight: 500;
-  line-height: 1.8;
+  line-height: 1.4;
 }
 
 .footer-contact .sep {
@@ -394,28 +443,24 @@ html, body {
 .footer-social {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 8.5pt;
+  font-size: 11pt;
   color: var(--rust);
 }
 
 /* ========== Print ========== */
 @media print {
   @page {
-    size: 225mm 320mm portrait;
+    size: 250mm 355mm portrait;
     margin: 0;
   }
-  html, body { background: white; }
+  html, body { background: transparent; }
   .menu-page {
     margin: 0;
     box-shadow: none;
-    width: 225mm;
-    height: 320mm;
-    min-height: 0;
-    padding-top: 10mm;
-    padding-bottom: 6mm;
-    overflow: hidden;
+    width: 250mm;
+    min-height: 355mm;
+    background: transparent;
   }
-  .section-heading h2 { background: white; }
 }
 </style>
 </head>
@@ -434,6 +479,11 @@ html, body {
 
   <!-- MENU BODY -->
   <div class="menu-body">
+
+    <section class="section">
+      <div class="section-heading"><h2>While You Decide</h2></div>
+      <div class="dishes-three-col" id="appetisers-list"></div>
+    </section>
 
     <section class="section">
       <div class="section-heading"><h2>Starters</h2></div>
@@ -486,11 +536,12 @@ document.getElementById('h-location').textContent = MENU.header.location;
 document.getElementById('h-subtitle').textContent = MENU.header.subtitle;
 
 // Dishes
+document.getElementById('appetisers-list').innerHTML = MENU.appetisers.map(renderDish).join('');
 document.getElementById('starters-list').innerHTML = MENU.starters.map(renderDish).join('');
 document.getElementById('mains-list').innerHTML = MENU.mains.map(renderDish).join('');
 
 // Sides
-document.getElementById('sides-price').innerHTML = `<span class="sides-price-num">${MENU.sidesPrice}</span>`;
+document.getElementById('sides-price').innerHTML = `each — <span class="num">${MENU.sidesPrice}</span>`;
 document.getElementById('sides-list').innerHTML =
   MENU.sides.map((s, i) => {
     const sep = i < MENU.sides.length - 1 ? '<span class="sep">·</span>' : '';
@@ -500,7 +551,7 @@ document.getElementById('sides-list').innerHTML =
 // Footer
 document.getElementById('f-allergy').textContent = MENU.footer.allergyNote;
 document.getElementById('f-contact').innerHTML =
-  `${MENU.footer.address}<br>${MENU.footer.phone}<span class="sep">·</span>${MENU.footer.web}`;
+  `${MENU.footer.address}<span class="sep">·</span>${MENU.footer.phone}<span class="sep">·</span>${MENU.footer.web}`;
 </script>
 
 </body>
