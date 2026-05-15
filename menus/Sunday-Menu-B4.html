@@ -76,7 +76,7 @@ const MENU = {
     address: "The Fox at Walton · Walton · Wetherby · LS23 7DQ",
     phone: "01937 842192",
     web: "foxatwalton.com",
-    allergyNote: "All food has been prepared in the presence of known allergens.  Please speak to your server for advice. Most items can be adapted to meet your dietary needs.",
+    allergyNote: "All food is prepared in the presence of known allergens. Please inform your server of any allergies or dietary requirements. Full allergen information available on request.",
   },
 };
 </script>
@@ -199,14 +199,14 @@ html, body {
 /* ========== MENU BODY ========== */
 .menu-body { flex: 1; }
 
-.section { margin-bottom: 8mm; }
+.section { margin-bottom: 6mm; }
 .section:last-child { margin-bottom: 0; }
 
 .section-heading {
   display: flex;
   align-items: center;
   gap: 4mm;
-  margin-bottom: 5mm;
+  margin-bottom: 4mm;
 }
 
 .section-heading::before,
@@ -242,7 +242,7 @@ html, body {
 /* ---------- Dishes ---------- */
 .dish {
   text-align: center;
-  margin-bottom: 5mm;
+  margin-bottom: 4mm;
 }
 
 .dish-name-price {
@@ -354,8 +354,8 @@ html, body {
 }
 
 .page-footer {
-  margin-top: auto;
-  padding-top: 6mm;
+  margin-top: 4mm;
+  padding-top: 4mm;
   border-top: 1px solid var(--rule);
   text-align: center;
 }
@@ -363,23 +363,23 @@ html, body {
 .footer-allergy {
   font-family: "Liberation Serif", "Times New Roman", Times, serif;
   font-style: italic;
-  font-size: 8.5pt;
+  font-size: 8pt;
   color: var(--grey);
-  margin-bottom: 3mm;
+  margin-bottom: 2mm;
   max-width: 160mm;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 .footer-contact {
   font-family: "Liberation Serif", "Times New Roman", Times, serif;
-  font-size: 8.5pt;
-  letter-spacing: 0.2em;
+  font-size: 8pt;
+  letter-spacing: 0.15em;
   color: var(--forest);
-  margin-bottom: 3mm;
+  margin-bottom: 0;
   font-weight: 500;
-  line-height: 1.8;
+  line-height: 1.6;
 }
 
 .footer-contact .sep {
