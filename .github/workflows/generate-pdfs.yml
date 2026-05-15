@@ -53,6 +53,8 @@ jobs:
             # Determine which script to use based on filename
             if [[ "$file" == *"-SRA4.html" ]]; then
               script="scripts/sra4.py"
+            elif [[ "$file" == *"-B4.html" ]]; then
+              script="scripts/b4.py"
             elif [[ "$file" == *"-A4.html" ]]; then
               script="scripts/a4.py"
             elif [[ "$file" == *"-A5.html" ]]; then
