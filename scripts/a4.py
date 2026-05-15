@@ -28,9 +28,6 @@ def html_to_pdf(html_path, pdf_path):
         page = context.new_page()
 
         page.goto(f"file://{html_path}")
-        page.evaluate("document.fonts.ready")
-        page.wait_for_load_state("networkidle")
-        page.wait_for_timeout(1500)
 
         page.pdf(
             path=str(temp_path),

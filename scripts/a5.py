@@ -9,7 +9,6 @@ Key settings:
 - Exact page size: 148mm x 210mm (A5)
 - No margins (HTML has its own padding built in)
 - Print background graphics enabled (cream page colour)
-- Waits for Google Fonts to load before capturing
 - Strips blank trailing pages
 """
 
@@ -39,9 +38,6 @@ def html_to_pdf(html_path, pdf_path):
         page = context.new_page()
 
         page.goto(f"file://{html_path}")
-        page.evaluate("document.fonts.ready")
-        page.wait_for_load_state("networkidle")
-        page.wait_for_timeout(1500)
 
         page.pdf(
             path=str(temp_path),
