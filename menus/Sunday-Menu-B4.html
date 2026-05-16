@@ -56,7 +56,7 @@ const MENU = {
   mains: [
     { name: "Pan Seared Salmon", price: "24", desc: "Crushed potatoes, wilted greens and beurre blanc" },
     { name: "Cesare Salad", price: "12", desc: "Gem lettuce, garlic crutons, Cesare dressing and anchovies", note: "Add chicken & bacon or salmon for 7" },
-    { name: "Fish & Chips", price: "Regular 21 / Small 15 ", desc: "Beer battered haddock, triple cooked chips and mushy peas" },
+    { name: "Fish & Chips", price: "<em>regular</em> 21 / <em>small</em> 15", desc: "Beer battered haddock, triple cooked chips and mushy peas" },
     { name: "Yorkshire Sausage & Buttery Mash", price: "18", desc: "Onion gravy, seasonal veg and Yorkshire pudding" },
     { name: "Pie Of The Day", price: "19", desc: "Buttery mash, honey roast carrots and proper gravy" },
   ],
@@ -276,6 +276,12 @@ html, body {
   position: absolute;
   left: -10px;
   color: var(--grey-light);
+}
+
+.dish-price em {
+  color: var(--charcoal);
+  font-style: normal;
+  font-weight: 400;
 }
 
 .dish-desc {
