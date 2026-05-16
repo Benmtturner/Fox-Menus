@@ -353,9 +353,21 @@ html, body {
   display: inline-block;
 }
 
+.sides-list .price {
+  color: var(--rust);
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.sides-list .price::before {
+  content: '·';
+  margin-right: 4px;
+  color: var(--grey-light);
+}
+
 .page-footer {
-  margin-top: 4mm;
-  padding-top: 4mm;
+  margin-top: 3mm;
+  padding-top: 3mm;
   border-top: 1px solid var(--rule);
   text-align: center;
 }
@@ -414,13 +426,13 @@ html, body {
 .sharing-note {
   font-family: "Liberation Serif", "Times New Roman", Times, serif;
   font-style: italic;
-  font-size: 9pt;
+  font-size: 10.5pt;
   color: var(--grey);
-  line-height: 1.35;
+  line-height: 1.45;
   text-align: center;
-  max-width: 170mm;
-  margin: 0 auto 4mm;
-  padding: 3mm 8mm;
+  max-width: 180mm;
+  margin: 0 auto 5mm;
+  padding: 4mm 10mm;
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
 }
@@ -518,9 +530,11 @@ html, body {
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-heading"><h2>Sides</h2></div>
-      <div class="sides-priced" id="sides-list"></div>
+    <section class="sides">
+      <div class="sides-heading-row">
+        <span class="sides-heading">Sides</span>
+      </div>
+      <div class="sides-list" id="sides-list"></div>
     </section>
 
   </div>
@@ -565,13 +579,16 @@ document.getElementById('sharing-note').textContent = MENU.sharingNote;
 document.getElementById('roasts-list').innerHTML = MENU.roasts.map(renderDish).join('');
 document.getElementById('mains-list').innerHTML = MENU.mains.map(renderDish).join('');
 
-// Sides (each priced individually - no descriptions)
-document.getElementById('sides-list').innerHTML = MENU.sides.map(renderDish).join('');
+// Sides (inline list with individual prices)
+document.getElementById('sides-list').innerHTML = MENU.sides.map((s, i) => {
+  const sep = i < MENU.sides.length - 1 ? '<span class="sep">·</span>' : '';
+  return `<span class="item">${s.name} <span class="price">${s.price}</span></span>${sep}`;
+}).join('');
 
 // Footer
 document.getElementById('f-allergy').textContent = MENU.footer.allergyNote;
 document.getElementById('f-contact').innerHTML =
-  `${MENU.footer.address}<br>${MENU.footer.phone}<span class="sep">·</span>${MENU.footer.web}`;
+  `${MENU.footer.address}<span class="sep">·</span>${MENU.footer.phone}<span class="sep">·</span>${MENU.footer.web}`;
 </script>
 
 </body>
