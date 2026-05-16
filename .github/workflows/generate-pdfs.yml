@@ -71,11 +71,13 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
 
-          # Check if there are PDF changes
-          if git diff --quiet menus/*.pdf; then
+          # Add all PDFs (new and changed)
+          git add menus/*.pdf
+
+          # Check if there are staged changes
+          if git diff --cached --quiet; then
             echo "No PDF changes to commit"
           else
-            git add menus/*.pdf
             git commit -m "Auto-generate PDFs from updated HTML menus"
             git push
           fi
