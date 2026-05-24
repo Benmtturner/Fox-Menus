@@ -57,6 +57,7 @@ const MENU = {
     { name: "Whole Baby Gem, Blue Cheese Dressing & Crispy Onions" },
     { name: "Honey Roast Carrots" },
   ],
+  sidesPrice: "4",
 
   // ---------- FOOTER CONTENT ----------
   footer: {
@@ -339,6 +340,23 @@ html, body {
 }
 
 /* ========== SIDES (two rows) ========== */
+.sides-price-tag {
+  font-family: "Liberation Serif", "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: 11pt;
+  color: var(--grey);
+  margin-left: 12px;
+}
+
+.sides-price-tag .num {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13pt;
+  color: var(--rust);
+  font-variant-numeric: tabular-nums;
+  margin-left: 2px;
+}
+
 .sides-list {
   font-family: "Liberation Serif", "Times New Roman", Times, serif;
   font-style: italic;
@@ -449,7 +467,7 @@ html, body {
 
     <!-- SIDES -->
     <div class="section" id="sides">
-      <div class="section-title"><h2>Sides</h2></div>
+      <div class="section-title"><h2>Sides</h2><span class="sides-price-tag" id="sides-price"></span></div>
       <div class="sides-list" id="sides-list"></div>
     </div>
 
@@ -503,6 +521,7 @@ document.getElementById('cold-sandwiches-availability').textContent = "Cold sand
 document.getElementById('classics-dishes').innerHTML = MENU.classics.map(renderDish).join('');
 
 // Sides (split into two rows)
+document.getElementById('sides-price').innerHTML = `each — <span class="num">${MENU.sidesPrice}</span>`;
 const sidesHalf = Math.ceil(MENU.sides.length / 2);
 const row1 = MENU.sides.slice(0, sidesHalf).map(renderSide).join('');
 const row2 = MENU.sides.slice(sidesHalf).map(renderSide).join('');
