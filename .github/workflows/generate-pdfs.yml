@@ -81,3 +81,15 @@ jobs:
             git commit -m "Auto-generate PDFs from updated HTML menus"
             git push
           fi
+
+      - name: Deploy menus to WordPress VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: 22
+          source: "menus/*.html,menus/*.pdf"
+          target: "/root/foxatwalton-staging/wp-content/uploads/"
+          strip_components: 0
+          overwrite: true
