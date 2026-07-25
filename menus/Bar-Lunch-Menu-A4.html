@@ -27,9 +27,9 @@ const MENU = {
   nibblyBits: [
     { name: "Olives", price: "3", desc: "Mixed marinated olives" },
     { name: "Bread & Butter", price: "4", desc: "Fresh homemade bread, whipped salted butter and gochujang hot honey" },
-    { name: "Twice-Baked Lincolnshire Poacher Soufflé", price: "11", desc: "Chive & wholegrain mustard cream" },
     { name: "Mini Chorizo", price: "6", desc: "Tossed in honey and sesame" },
-    { name: "Cheese & Meat", price: "9", desc: "Bread, Sliced Meat, Cheese and olives" },
+    { name: "Cheese & Meat", price: "9", desc: "Bread, sliced meats, cheese and olives" },
+    { name: "Twice-Baked Lincolnshire Poacher Soufflé", price: "11", desc: "Chive & wholegrain mustard cream" },
   ],
 
   // ---------- HOT SANDWICHES ----------
@@ -311,14 +311,18 @@ html, body {
   font-style: normal;
 }
 
-/* ========== THREE COLUMN LAYOUT (Nibbly Bits) ========== */
+/* ========== THREE COLUMN LAYOUT (Nibbly Bits) ==========
+   Flex so an odd number of dishes wraps into centred rows
+   (e.g. 5 dishes = 3 on top, 2 centred beneath) */
 .dishes-three-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0 8mm;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2mm 8mm;
 }
 
 .dishes-three-col .dish {
+  flex: 1 1 28%;
   break-inside: avoid;
 }
 
