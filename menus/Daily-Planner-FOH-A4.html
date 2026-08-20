@@ -2,20 +2,22 @@
 <html lang="en-GB">
 <head>
 <meta charset="UTF-8">
-<title>The Fox at Walton — Daily Planner Diary</title>
+<title>The Fox at Walton — FOH Daily Sheet</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- ============================================================
-     EDIT THE DAILY PLANNER HERE
+     EDIT THE FOH DAILY SHEET HERE
      ============================================================
-     Page size: A4 PORTRAIT (210mm × 297mm), 2 pages
+     Page size: A4 PORTRAIT (210mm × 297mm), 1 page
 
-     Page 1: Opening/Closing checklists, Temperature checks,
-             Cleaning tasks, Shift notes, Random food temps
-     Page 2: Veg Order / Prep List / Fish Order / Meat Order
+     Top half:    Opening checklist, Fridge/cellar temperatures,
+                  Toilet cleaning log, Targeted weekly cleaning,
+                  Handover/Issues
+     Bottom half: Closing checklist, Daily cover, NPS,
+                  Project 500, To Order, Handover/Issues,
+                  Call list / Follow ups
 
-     To change checklist items, temperature rows or supplier
-     details, edit the lists below — the page builds itself.
+     To change any list, edit below — the page builds itself.
      ============================================================ -->
 <script>
 const PLANNER = {
@@ -26,19 +28,19 @@ const PLANNER = {
   // ---------- OPENING CHECKLIST ----------
   opening: [
     "All lights on",
-    "Coffe machine working and milk checked ",
-    "Glass washer turned on and working"   
-    "Beer waken,nosels on and cellar checked",
+    "Coffee machine working and milk checked",
+    "Glass washer turned on and working",
+    "Beer nozzles on and cellar checked",
     "Drink garnish ready",
-    "Floor swept and moped",
+    "Floor swept and mopped",
     "System logged in and reservations checked",
-    "Tables set", 
+    "Tables set",
     "All deliveries checked & put away",
-    "Guest and staff toilet clean & restocked",
+    "Guest and staff toilets clean & restocked",
     "Outside is ready",
     "Fire exit door open",
     "Daily update sheet filled in",
-    "Sunday set up done (when applicable)", 
+    "Sunday set up done (when applicable)",
     "Open sign out",
   ],
 
@@ -46,47 +48,46 @@ const PLANNER = {
   closing: [
     "Tables clean and relayed",
     "Coffee machine cleaned and turned off",
-    "Fridges restocked (FIFO) ,celan and tidy",
+    "Fridges restocked (FIFO), clean and tidy",
     "Bins emptied & new bags in place",
-    "Surfaces, beer mats are clean and sanitised",
-    "Glasswasher cleaned, salt refilled and rutned off",
+    "Surfaces & beer mats clean and sanitised",
+    "Glasswasher cleaned, salt refilled, turned off",
     "Cash up done",
-    "Cellar tidy, empty kegs outisde",
+    "Cellar tidy, empty kegs outside",
     "Open sign brought inside",
-    "Front and fire exit door locked",
+    "Front and fire exit doors locked",
     "Day closed, banking done, e-mails sent",
-    "Glass bin emptied and rinsed", 
+    "Glass bin emptied and rinsed",
     "NPS calculated and posted",
-    "Bins emptied & new bags in place",
   ],
 
-  // ---------- TEMPERATURE CHECKS (AM / PM) ----------
+  // ---------- TEMPERATURES ----------
   temps: [
+    "Wine Fridge 8–10°C",
     "Bar Fridge 1–5°C",
-    "Wine Fridge 8-10°C",
-    "Cellar temperature 11-13",
- 
+    "Cellar 11–13°C",
   ],
-  tempsHighlight: "Food Covers",   // green row at the bottom
 
-  cleaningTaskCount: 10,
-  foodTempRows: 6,
+  // ---------- TOILET CLEANING LOG ----------
+  toiletRows: 5,
 
-  // ---------- PAGE 2: ORDER SHEETS ----------
-  orders: {
-    veg:  { title: "Veg Order",  line1: "Johnsons — call 01937 582070", line2: "Next day delivery, 6 days a week" },
-    prep: { title: "Prep List",  line1: "", line2: "" },
-    fish: { title: "Fish Order", line1: "Hodgsons — call 01429 274169", line2: "Next day delivery, 6 days a week" },
-    meat: { title: "Meat Order", line1: "R&J — 01765 658611", line2: "Next day delivery, 6 days a week" },
-    other:{ title: "Other / Dry Goods", line1: "", line2: "" },
-  },
+  // ---------- TARGETED CLEANING (weekly rota) ----------
+  targeted: [
+    { day: "Monday",    task: "" },
+    { day: "Tuesday",   task: "" },
+    { day: "Wednesday", task: "Cellar floor & shelves / restock / glasses / windows" },
+    { day: "Thursday",  task: "Floor deep clean / table legs" },
+    { day: "Friday",    task: "Salt & pepper shakers / glass rack / bar shelves" },
+    { day: "Saturday",  task: "Spider webs / walls / skirting boards" },
+    { day: "Sunday",    task: "Ice machine / glass washer" },
+  ],
 };
 </script>
 
 <style>
 :root {
   --ink: #1a1a1a;
-  --steel: #9db8d2;        /* header fills, echoes the original blue */
+  --steel: #9db8d2;        /* header fills, matches BOH planner */
   --steel-light: #dce6f1;  /* alternating rows */
   --steel-pale: #eef3f9;
   --green: #6fae4f;
@@ -111,11 +112,9 @@ body {
   height: 296.5mm;
   padding: 7mm 8mm;
   overflow: hidden;
-  page-break-after: always;
   display: flex;
   flex-direction: column;
 }
-.sheet:last-child { page-break-after: auto; }
 
 /* ---------- header ---------- */
 .masthead {
@@ -124,7 +123,7 @@ body {
   gap: 4mm;
   align-items: stretch;
   border: 0.4mm solid var(--box);
-  margin-bottom: 4mm;
+  margin-bottom: 3.5mm;
 }
 .logo {
   background: #f5efe3;
@@ -165,14 +164,15 @@ body {
 }
 .mgr-block .field .line { flex: 1; border-bottom: 0.25mm solid var(--ink); }
 
-/* ---------- page 1 grid ---------- */
-.grid {
-  flex: 1;
+/* ---------- halves ---------- */
+.half {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3.5mm;
   min-height: 0;
 }
+.half-top { flex: 1.08; }
+.half-bottom { flex: 1; border-top: 0.5mm solid var(--box); padding-top: 3.5mm; margin-top: 3.5mm; }
 .col { display: flex; flex-direction: column; gap: 3mm; min-height: 0; }
 
 h2 {
@@ -186,9 +186,10 @@ h2 {
 }
 
 /* checklists */
-.checklist { border: 0.3mm solid var(--box); }
-.checklist ul { list-style: none; }
+.checklist { border: 0.3mm solid var(--box); flex: 1; }
+.checklist ul { list-style: none; height: 100%; display: flex; flex-direction: column; }
 .checklist li {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -198,6 +199,7 @@ h2 {
   padding: 1.15mm 1.8mm;
   border-top: 0.2mm solid var(--rule);
 }
+.checklist li:first-child { border-top: none; }
 .checklist li:nth-child(even) { background: var(--steel-pale); }
 .checklist .tick {
   flex: 0 0 4.2mm;
@@ -205,110 +207,67 @@ h2 {
   border: 0.3mm solid var(--box);
   background: #fff;
 }
+.checklist-wrap { flex: 1; display: flex; flex-direction: column; }
+.checklist-wrap h2 { flex: none; }
 
-/* temperature checks */
+/* tables */
 table { border-collapse: collapse; width: 100%; }
-.temps-table { border: 0.3mm solid var(--box); }
-.temps-table th, .temps-table td {
+.temps-table, .toilet-table { border: 0.3mm solid var(--box); }
+.temps-table th, .temps-table td,
+.toilet-table th, .toilet-table td {
   border: 0.2mm solid var(--rule);
   font-size: 2.9mm;
   padding: 1.05mm 1.6mm;
   text-align: left;
 }
-.temps-table th { background: var(--steel); font-size: 3mm; }
-.temps-table th.ampm, .temps-table td.cell { width: 11mm; text-align: center; }
+.temps-table th, .toilet-table th { background: var(--steel); font-size: 3mm; }
+.temps-table th.cel, .temps-table td.cell { width: 14mm; text-align: center; }
 .temps-table tr:nth-child(even) td { background: var(--steel-pale); }
 .temps-table td.cell { background: #fff !important; }
-.temps-table tr.highlight td { background: var(--green) !important; color: #fff; font-weight: 700; }
-.temps-table tr.highlight td.cell { background: #fff !important; }
+.temps-table td { height: 6.4mm; }
+.toilet-table td { height: 6.6mm; }
+.toilet-table th { text-align: center; }
 
-/* cleaning tasks */
-.tasks { border: 0.3mm solid var(--box); flex: 1; display: flex; flex-direction: column; }
-.tasks ol { list-style: none; counter-reset: task; flex: 1; display: flex; flex-direction: column; }
-.tasks li {
-  counter-increment: task;
+/* targeted cleaning rota */
+.targeted { border: 0.3mm solid var(--box); flex: 1; display: flex; flex-direction: column; }
+.targeted ul { list-style: none; flex: 1; display: flex; flex-direction: column; }
+.targeted li {
   flex: 1;
   display: flex;
-  align-items: flex-end;
-  gap: 1.6mm;
-  font-size: 3mm;
-  font-weight: 700;
-  padding: 0 1.8mm 0.8mm;
+  align-items: center;
+  gap: 1.8mm;
+  padding: 1mm 1.8mm;
   border-top: 0.2mm solid var(--rule);
 }
-.tasks li::before { content: counter(task) "."; }
-.tasks li .line { flex: 1; border-bottom: 0.2mm dotted var(--faint); }
+.targeted li:nth-child(even) { background: var(--steel-pale); }
+.targeted .day { font-weight: 700; font-size: 2.9mm; flex: 0 0 17mm; }
+.targeted .task { flex: 1; font-size: 2.6mm; line-height: 1.3; }
+.targeted .task .line { display: block; border-bottom: 0.2mm dotted var(--faint); height: 3.4mm; }
+.targeted .tick {
+  flex: 0 0 4.2mm;
+  height: 4.2mm;
+  border: 0.3mm solid var(--box);
+  background: #fff;
+}
 
-/* shift notes */
+/* lined writing boxes */
 .notes { border: 0.3mm solid var(--box); flex: 1; display: flex; flex-direction: column; }
+.notes h2 { border: none; border-bottom: 0.3mm solid var(--box); }
 .notes .lines { flex: 1; display: flex; flex-direction: column; padding: 1mm 2mm 2mm; }
 .notes .lines span { flex: 1; border-bottom: 0.2mm dotted var(--faint); }
 .notes .lines span:last-child { border-bottom: none; }
 
-/* went wrong box */
-.wrong { border: 0.6mm solid var(--red); flex: 1; display: flex; flex-direction: column; }
-.wrong .head {
-  color: var(--red);
-  font-weight: 700;
-  font-size: 3.2mm;
-  text-align: center;
-  line-height: 1.35;
-  padding: 1.8mm 2mm 1.4mm;
-}
-.wrong .lines { flex: 1; display: flex; flex-direction: column; padding: 0 2mm 2mm; }
-.wrong .lines span { flex: 1; border-bottom: 0.2mm dotted var(--faint); }
-.wrong .lines span:last-child { border-bottom: none; }
-
-/* random food temps */
-.food-temps { margin-top: 3.5mm; }
-.food-temps table { border: 0.4mm solid var(--box); }
-.food-temps caption {
-  background: var(--steel);
-  border: 0.4mm solid var(--box);
-  border-bottom: none;
-  font-weight: 700;
-  font-size: 3.8mm;
-  padding: 1.6mm 0;
-}
-.food-temps th {
-  background: var(--steel-light);
-  font-size: 3mm;
-  border: 0.25mm solid var(--box);
-  padding: 1.4mm 1mm;
-}
-.food-temps td {
-  border: 0.25mm solid var(--box);
-  height: 6.8mm;
-}
-.food-temps th:first-child { width: 28%; }
-
-/* ---------- page 2 ---------- */
-.orders-grid {
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 4mm;
-  min-height: 0;
-}
-.order-col { display: flex; flex-direction: column; gap: 4mm; min-height: 0; }
-.order-box {
-  border: 0.5mm solid var(--ink);
-  flex: 1;
+/* daily cover fields */
+.cover-box { border: 0.3mm solid var(--box); }
+.cover-box .fields { padding: 2mm 2.5mm; display: flex; flex-direction: column; gap: 2.6mm; }
+.cover-box .field {
   display: flex;
-  flex-direction: column;
-  min-height: 0;
+  align-items: baseline;
+  gap: 1.5mm;
+  font-size: 3.4mm;
+  font-weight: 700;
 }
-.order-box .head {
-  text-align: center;
-  padding: 2mm 2mm 1.6mm;
-  border-bottom: 0.25mm solid var(--rule);
-}
-.order-box .head .t { font-weight: 700; font-size: 3.6mm; }
-.order-box .head .s { font-weight: 700; font-size: 2.9mm; margin-top: 1mm; }
-.order-box .head .s:empty { display: none; }
-.order-box .lines { flex: 1; display: flex; flex-direction: column; padding: 1mm 2.5mm 2.5mm; }
-.order-box .lines span { flex: 1; border-bottom: 0.2mm dotted var(--faint); }
-.order-box .lines span:last-child { border-bottom: none; }
+.cover-box .field .line { flex: 1; border-bottom: 0.25mm solid var(--ink); }
 
 @media print {
   .sheet { margin: 0; }
@@ -322,7 +281,6 @@ table { border-collapse: collapse; width: 100%; }
 </head>
 <body>
 
-<!-- ================= PAGE 1 ================= -->
 <section class="sheet">
 
   <header class="masthead">
@@ -337,90 +295,106 @@ table { border-collapse: collapse; width: 100%; }
     </div>
     <div class="mgr-block">
       <div class="field">Date:<span class="line"></span></div>
-      <div class="field">Open MGR:<span class="line"></span></div>
-      <div class="field">Close MGR:<span class="line"></span></div>
+      <div class="field">Open:<span class="line"></span></div>
+      <div class="field">Close:<span class="line"></span></div>
     </div>
   </header>
 
-  <div class="grid">
+  <!-- ============ TOP HALF — OPENING / DAY ============ -->
+  <div class="half half-top">
 
-    <!-- left: checklists -->
+    <!-- left: opening checklist -->
     <div class="col">
-      <div>
+      <div class="checklist-wrap">
         <h2>Opening Checklist</h2>
         <div class="checklist"><ul id="opening"></ul></div>
       </div>
+    </div>
+
+    <!-- middle: temps + targeted cleaning -->
+    <div class="col">
       <div>
+        <h2>Temperatures</h2>
+        <table class="temps-table">
+          <thead>
+            <tr><th></th><th class="cel">Temp °C</th></tr>
+          </thead>
+          <tbody id="temps"></tbody>
+        </table>
+      </div>
+      <div class="targeted">
+        <h2 style="border:none; border-bottom:0.3mm solid var(--box);">Targeted Cleaning</h2>
+        <ul id="targeted"></ul>
+      </div>
+    </div>
+
+    <!-- right: toilet cleaning + handover -->
+    <div class="col">
+      <div>
+        <h2>Toilet Cleaning</h2>
+        <table class="toilet-table">
+          <thead>
+            <tr><th>Name</th><th>Time</th></tr>
+          </thead>
+          <tbody id="toilet"></tbody>
+        </table>
+      </div>
+      <div class="notes" style="flex:1">
+        <h2>Handover / Issues</h2>
+        <div class="lines" id="handover-am"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ BOTTOM HALF — CLOSING / NIGHT ============ -->
+  <div class="half half-bottom">
+
+    <!-- left: closing checklist -->
+    <div class="col">
+      <div class="checklist-wrap">
         <h2>Closing Checklist</h2>
         <div class="checklist"><ul id="closing"></ul></div>
       </div>
     </div>
 
-    <!-- middle: temps + cleaning -->
+    <!-- middle: cover / nps / project 500 / to order -->
     <div class="col">
-      <div>
-        <h2>Temperature Checks</h2>
-        <table class="temps-table">
-          <thead>
-            <tr><th></th><th class="ampm">AM</th><th class="ampm">PM</th></tr>
-          </thead>
-          <tbody id="temps"></tbody>
-        </table>
+      <div class="cover-box">
+        <h2>Daily Cover</h2>
+        <div class="fields">
+          <div class="field">Tables:<span class="line"></span></div>
+          <div class="field">Pax:<span class="line"></span></div>
+        </div>
       </div>
-      <div class="tasks" style="flex:1">
-        <h2 style="border:none; border-bottom:0.3mm solid var(--box);">Daily Cleaning Tasks</h2>
-        <ol id="tasks"></ol>
+      <div class="notes" style="flex:0.7">
+        <h2>NPS</h2>
+        <div class="lines" id="nps-lines"></div>
+      </div>
+      <div class="notes" style="flex:0.7">
+        <h2>Project 500</h2>
+        <div class="lines" id="project-lines"></div>
+      </div>
+      <div class="notes" style="flex:1">
+        <h2>To Order</h2>
+        <div class="lines" id="order-lines"></div>
       </div>
     </div>
 
-    <!-- right: notes + wrong -->
+    <!-- right: handover + call list -->
     <div class="col">
       <div class="notes" style="flex:1.1">
-        <h2 style="border:none; border-bottom:0.3mm solid var(--box);">Shift Notes</h2>
-        <div class="lines" id="notes-lines"></div>
+        <h2>Handover / Issues</h2>
+        <div class="lines" id="handover-pm"></div>
       </div>
-      <div class="wrong">
-        <div class="head">Did Anything Go Wrong Today?<br>If so, what did you do about it?</div>
-        <div class="lines" id="wrong-lines"></div>
+      <div class="notes" style="flex:1">
+        <h2>Call List / Follow Ups</h2>
+        <div class="lines" id="call-lines"></div>
       </div>
     </div>
 
   </div>
 
-  <div class="food-temps">
-    <table>
-      <caption>Random Food Temperatures</caption>
-      <thead>
-        <tr>
-          <th>Item</th><th>Time</th><th>Cooking Temp</th>
-          <th>Cooling Time</th><th>Cooling Temp</th><th>Re-Heat Temp</th>
-        </tr>
-      </thead>
-      <tbody id="food-temps"></tbody>
-    </table>
-  </div>
-
-</section>
-
-<!-- ================= PAGE 2 ================= -->
-<section class="sheet">
-  <div class="orders-grid">
-
-    <div class="order-col">
-      <div class="order-box" id="box-veg"></div>
-    </div>
-
-    <div class="order-col">
-      <div class="order-box" id="box-prep"></div>
-    </div>
-
-    <div class="order-col">
-      <div class="order-box" style="flex:1" id="box-fish"></div>
-      <div class="order-box" style="flex:1.3" id="box-meat"></div>
-      <div class="order-box" style="flex:1" id="box-other"></div>
-    </div>
-
-  </div>
 </section>
 
 <script>
@@ -450,55 +424,44 @@ for (const [id, items] of [["opening", PLANNER.opening], ["closing", PLANNER.clo
   }
 }
 
-// temperature checks
+// temperatures
 const tempsBody = document.getElementById("temps");
 for (const row of PLANNER.temps) {
   const tr = el("tr");
   tr.appendChild(el("td", "", row));
   tr.appendChild(el("td", "cell"));
-  tr.appendChild(el("td", "cell"));
   tempsBody.appendChild(tr);
 }
-const hl = el("tr", "highlight");
-hl.appendChild(el("td", "", PLANNER.tempsHighlight));
-hl.appendChild(el("td", "cell"));
-hl.appendChild(el("td", "cell"));
-tempsBody.appendChild(hl);
 
-// cleaning tasks
-const tasksOl = document.getElementById("tasks");
-for (let i = 0; i < PLANNER.cleaningTaskCount; i++) {
+// toilet cleaning log
+const toiletBody = document.getElementById("toilet");
+for (let i = 0; i < PLANNER.toiletRows; i++) {
+  const tr = el("tr");
+  tr.appendChild(el("td"));
+  tr.appendChild(el("td"));
+  toiletBody.appendChild(tr);
+}
+
+// targeted cleaning rota
+const targetedUl = document.getElementById("targeted");
+for (const row of PLANNER.targeted) {
   const li = el("li");
-  li.appendChild(el("span", "line"));
-  tasksOl.appendChild(li);
+  li.appendChild(el("span", "day", row.day));
+  const task = el("span", "task");
+  if (row.task) { task.textContent = row.task; }
+  else { task.appendChild(el("span", "line")); }
+  li.appendChild(task);
+  li.appendChild(el("span", "tick"));
+  targetedUl.appendChild(li);
 }
 
 // writing lines
-fillLines(document.getElementById("notes-lines"), 16);
-fillLines(document.getElementById("wrong-lines"), 8);
-
-// random food temps
-const foodBody = document.getElementById("food-temps");
-for (let i = 0; i < PLANNER.foodTempRows; i++) {
-  const tr = el("tr");
-  for (let c = 0; c < 6; c++) tr.appendChild(el("td"));
-  foodBody.appendChild(tr);
-}
-
-// page 2 order boxes
-for (const [key, box] of Object.entries(PLANNER.orders)) {
-  const node = document.getElementById("box-" + key);
-  if (!node) continue;
-  const head = el("div", "head");
-  head.appendChild(el("div", "t", box.title));
-  head.appendChild(el("div", "s", box.line1));
-  head.appendChild(el("div", "s", box.line2));
-  node.appendChild(head);
-  const lines = el("div", "lines");
-  const lineCount = (key === "veg" || key === "prep") ? 34 : 12;
-  fillLines(lines, lineCount);
-  node.appendChild(lines);
-}
+fillLines(document.getElementById("handover-am"), 10);
+fillLines(document.getElementById("nps-lines"), 2);
+fillLines(document.getElementById("project-lines"), 2);
+fillLines(document.getElementById("order-lines"), 4);
+fillLines(document.getElementById("handover-pm"), 8);
+fillLines(document.getElementById("call-lines"), 7);
 </script>
 
 </body>
