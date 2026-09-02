@@ -82,14 +82,14 @@ jobs:
             git push
           fi
 
-      - name: Deploy menus to WordPress VPS
+      - name: Deploy menus to WordPress (SiteGround)
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          port: 22
+          port: 18765
           source: "menus/*.html,menus/*.pdf"
-          target: "/root/foxatwalton-staging/wp-content/uploads/"
+          target: "/home/customer/www/foxatwalton.com/public_html/wp-content/uploads/"
           strip_components: 0
           overwrite: true
