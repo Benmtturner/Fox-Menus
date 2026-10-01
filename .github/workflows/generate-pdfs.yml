@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'menus/*.html'
+      - 'documents/*.html'
   workflow_dispatch:
 
 jobs:
@@ -35,8 +36,8 @@ jobs:
 
       - name: Detect changed HTML files and generate PDFs
         run: |
-          # Get list of changed HTML files in menus/
-          changed_files=$(git diff --name-only HEAD~1 HEAD | grep '^menus/.*\.html$' || true)
+          # Get list of changed HTML files in menus/ and documents/
+          changed_files=$(git diff --name-only HEAD~1 HEAD | grep -E '^(menus|documents)/.*\.html$' || true)
 
           if [ -z "$changed_files" ]; then
             echo "No HTML files changed"
@@ -72,7 +73,7 @@ jobs:
           git config user.email "actions@github.com"
 
           # Add all PDFs (new and changed)
-          git add menus/*.pdf
+          git add menus/*.pdf documents/*.pdf
 
           # Check if there are staged changes
           if git diff --cached --quiet; then
