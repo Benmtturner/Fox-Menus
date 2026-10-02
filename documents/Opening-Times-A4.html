@@ -36,6 +36,7 @@ const SHEET = {
       open: "11:30 am – 11:00 pm",
       foodLabel: "Food served",
       food: "12:00 pm – 3:00 pm & 5:00 pm – 8:30 pm",
+      note: "Bar menu served all day",
     },
     {
       days: "Saturday",
@@ -284,6 +285,7 @@ for (const block of SHEET.hours) {
     const label = block.foodLabel ? "<strong>" + block.foodLabel + ":</strong> " : "";
     node.appendChild(el("div", "food", label + block.food));
   }
+  if (block.note) node.appendChild(el("div", "food", block.note));
   hoursWrap.appendChild(node);
 }
 
