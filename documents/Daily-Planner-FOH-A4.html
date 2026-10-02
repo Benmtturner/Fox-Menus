@@ -8,14 +8,19 @@
 <!-- ============================================================
      EDIT THE FOH DAILY SHEET HERE
      ============================================================
-     Page size: A4 PORTRAIT (210mm × 297mm), 1 page
+     Page size: A4 PORTRAIT (210mm × 297mm), 2 pages
 
+     Page 1
      Top half:    Opening checklist, Fridge/cellar temperatures,
                   Toilet cleaning log, Targeted weekly cleaning,
                   Handover/Issues
      Bottom half: Closing checklist, Daily cover, NPS,
                   Project 500, To Order, Handover/Issues,
                   Call list / Follow ups
+
+     Page 2:      Daily Update — soup/pie of the day, sandwiches,
+                  changes & no/low stock, celebrations, dietary
+                  requirements, daily challenge, team table
 
      To change any list, edit below — the page builds itself.
      ============================================================ -->
@@ -73,6 +78,9 @@ const PLANNER = {
   // ---------- TOILET CLEANING LOG ----------
   toiletRows: 5,
 
+  // ---------- PAGE 2: DAILY UPDATE ----------
+  teamRows: 8,
+
   // ---------- TARGETED CLEANING (weekly rota) ----------
   targeted: [
     { day: "Monday",    task: "" },
@@ -114,9 +122,11 @@ body {
   height: 296.5mm;
   padding: 7mm 8mm;
   overflow: hidden;
+  page-break-after: always;
   display: flex;
   flex-direction: column;
 }
+.sheet:last-child { page-break-after: auto; }
 
 /* ---------- header ---------- */
 .masthead {
@@ -271,6 +281,25 @@ table { border-collapse: collapse; width: 100%; }
 }
 .cover-box .field .line { flex: 1; border-bottom: 0.25mm solid var(--ink); }
 
+/* ---------- page 2: daily update ---------- */
+.update-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5mm;
+  min-height: 0;
+}
+.team-table { border: 0.3mm solid var(--box); }
+.team-table th, .team-table td {
+  border: 0.2mm solid var(--rule);
+  font-size: 2.9mm;
+  padding: 1.05mm 1.6mm;
+  text-align: left;
+}
+.team-table th { background: var(--steel); font-size: 3mm; text-align: center; }
+.team-table th:first-child { width: 35%; }
+.team-table td { height: 8mm; }
+
 @media print {
   .sheet { margin: 0; }
 }
@@ -399,6 +428,72 @@ table { border-collapse: collapse; width: 100%; }
 
 </section>
 
+<!-- ================= PAGE 2 — DAILY UPDATE ================= -->
+<section class="sheet">
+
+  <header class="masthead">
+    <div class="logo" id="logo2"></div>
+    <div class="masthead-title">
+      <div class="t1">The Fox at Walton</div>
+      <div class="t2">Daily Update</div>
+    </div>
+    <div class="mgr-block">
+      <div class="field">Date:<span class="line"></span></div>
+      <div class="field">MGR:<span class="line"></span></div>
+    </div>
+  </header>
+
+  <div class="update-grid">
+
+    <!-- left: today's food -->
+    <div class="col">
+      <div class="notes" style="flex:0.45">
+        <h2>Soup of the Day</h2>
+        <div class="lines" id="soup-lines"></div>
+      </div>
+      <div class="notes" style="flex:0.45">
+        <h2>Pie of the Day</h2>
+        <div class="lines" id="pie-lines"></div>
+      </div>
+      <div class="notes" style="flex:0.7">
+        <h2>Sandwiches</h2>
+        <div class="lines" id="sandwich-lines"></div>
+      </div>
+      <div class="notes" style="flex:1.1">
+        <h2>Changes / No &amp; Low Stock</h2>
+        <div class="lines" id="stock-lines"></div>
+      </div>
+      <div class="notes" style="flex:0.6">
+        <h2>Daily Challenge</h2>
+        <div class="lines" id="challenge-lines"></div>
+      </div>
+    </div>
+
+    <!-- right: guests + team -->
+    <div class="col">
+      <div class="notes" style="flex:0.7">
+        <h2>Celebrations</h2>
+        <div class="lines" id="celebration-lines"></div>
+      </div>
+      <div class="notes" style="flex:1">
+        <h2>Dietary Requirements</h2>
+        <div class="lines" id="dietary-lines"></div>
+      </div>
+      <div>
+        <h2>Team</h2>
+        <table class="team-table">
+          <thead>
+            <tr><th>Name</th><th>Position / Responsibilities</th></tr>
+          </thead>
+          <tbody id="team"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
 <script>
 function el(tag, cls, html) {
   const node = document.createElement(tag);
@@ -464,6 +559,27 @@ fillLines(document.getElementById("project-lines"), 2);
 fillLines(document.getElementById("order-lines"), 4);
 fillLines(document.getElementById("handover-pm"), 8);
 fillLines(document.getElementById("call-lines"), 7);
+
+// ---------- page 2: daily update ----------
+// reuse the page-1 logo so the base64 image only lives in the file once
+document.getElementById("logo2").innerHTML = document.querySelector(".logo").innerHTML;
+
+fillLines(document.getElementById("soup-lines"), 2);
+fillLines(document.getElementById("pie-lines"), 2);
+fillLines(document.getElementById("sandwich-lines"), 4);
+fillLines(document.getElementById("stock-lines"), 7);
+fillLines(document.getElementById("challenge-lines"), 3);
+fillLines(document.getElementById("celebration-lines"), 4);
+fillLines(document.getElementById("dietary-lines"), 6);
+
+// team table
+const teamBody = document.getElementById("team");
+for (let i = 0; i < PLANNER.teamRows; i++) {
+  const tr = el("tr");
+  tr.appendChild(el("td"));
+  tr.appendChild(el("td"));
+  teamBody.appendChild(tr);
+}
 </script>
 
 </body>
