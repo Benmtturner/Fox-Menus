@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<title>The Horse and Hound — Lunchtime Menu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+     EDIT THE MENU HERE
+     ============================================================
+     Page size: A4 PORTRAIT (210mm × 297mm)
+     ============================================================ -->
+<script>
+const MENU = {
+
+  header: {
+    the: "THE",
+    wordmark: "HORSE AND HOUND",
+    location: "KIRK DEIGHTON",
+    tagline: "INDEPENDENT FREE HOUSE",
+    subtitle: "LUNCHTIME MENU",
+    served: "SERVED DAILY, BETWEEN 12:00 – 14:00",
+  },
+
+  // ---------- LUNCH DISHES ----------
+  dishes: [
+    { name: "Hot Steak Open Sandwich", price: "16", desc: "With caramelised onions, stout cheddar, chips and gravy" },
+    { name: "Haddock Goujon Sandwich", price: "15", desc: "With chips, salad and tartare sauce" },
+    { name: "Croque Monsieur", price: "16", desc: "Ham, cheddar, Dijon mustard, topped with b&eacute;chamel sauce and even more cheese, alongside chips and salad" },
+    { name: "Pie and Peas", price: "10", desc: "Our homemade pork pie, served over a warm bed of mushy peas and mint sauce" },
+    { name: "Horse and Hound Ploughman&rsquo;s", price: "13", desc: "Pork pie, roast Yorkshire ham, farmhouse cheese, homemade bread, pickles, chutney and salad" },
+  ],
+
+  // ---------- COLD SANDWICH NOTE ----------
+  coldNote: "PREFER TO ENJOY A CLASSIC COLD SANDWICH?",
+  coldSub: "Ask a member of our staff for current availability",
+
+  // ---------- FOOTER ----------
+  footer: {
+    allergyNote: "All our food is prepared in the presence of common allergens but as we prepare everything to order onsite, it&rsquo;s easy, in most cases, to adapt to your needs. Please discuss any special dietary requirements with your server.",
+    companyNote: "The Horse And Hound Wetherby LTD, Registered office &mdash; Horse &amp; Hound (Formerly The Bay Horse), Main Street, Kirk Deighton, Wetherby, LS22 4DZ. Company number &mdash; 14672783. Registered in England &amp; Wales.",
+  },
+};
+</script>
+
+<style>
+:root {
+  --hh-blue: #4A79A8;
+  --charcoal: #1A1A1A;
+  --grey: #5A5A5A;
+  --grey-light: #8A8A8A;
+  --rule: #C6D2DE;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: #fff;
+  color: var(--charcoal);
+  font-family: "Liberation Serif", "Times New Roman", Times, serif;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.menu-page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  padding: 12mm 16mm 10mm;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========== MASTHEAD ========== */
+.page-header { text-align: center; margin-bottom: 2mm; }
+.header-the { font-size: 11pt; letter-spacing: 0.3em; }
+.wordmark-row {
+  display: flex;
+  align-items: center;
+  gap: 6mm;
+  margin: 0.5mm 0;
+}
+.wordmark-row::before,
+.wordmark-row::after { content: ''; flex: 1; height: 1px; background: var(--charcoal); opacity: 0.5; }
+.wordmark { font-size: 26pt; letter-spacing: 0.06em; white-space: nowrap; }
+.location { font-size: 13pt; letter-spacing: 0.22em; margin-bottom: 1mm; }
+.tagline { font-size: 9pt; letter-spacing: 0.18em; margin-bottom: 5mm; }
+.subtitle {
+  font-weight: 700;
+  font-size: 32pt;
+  letter-spacing: 0.08em;
+  color: var(--hh-blue);
+  line-height: 1.1;
+}
+.served {
+  font-weight: 700;
+  font-size: 14pt;
+  letter-spacing: 0.1em;
+  color: var(--hh-blue);
+  margin-top: 1.5mm;
+}
+
+/* ========== DISHES (centred column) ========== */
+.menu-body { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; }
+.dish { text-align: center; }
+.dish-name-price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5mm;
+}
+.dish-name { font-weight: 700; font-size: 16pt; }
+.dish-price { font-weight: 700; font-size: 15pt; color: var(--hh-blue); font-variant-numeric: tabular-nums; }
+.dish-desc {
+  font-style: italic;
+  font-size: 12.5pt;
+  color: var(--grey);
+  line-height: 1.4;
+  max-width: 150mm;
+  margin: 1mm auto 0;
+}
+
+/* cold sandwich note */
+.cold-note { text-align: center; margin-top: 2mm; }
+.cold-note .head {
+  font-weight: 700;
+  font-size: 14pt;
+  letter-spacing: 0.06em;
+  color: var(--hh-blue);
+}
+.cold-note .sub { font-style: italic; font-size: 12pt; color: var(--grey); margin-top: 1mm; }
+
+/* ========== FOOTER ========== */
+.page-footer { text-align: center; border-top: 1px solid var(--rule); padding-top: 2.5mm; margin-top: 5mm; }
+.allergy-note { font-style: italic; font-size: 8.5pt; color: var(--grey); line-height: 1.4; max-width: 165mm; margin: 0 auto 1.4mm; }
+.company-note { font-size: 7pt; color: var(--grey-light); line-height: 1.4; max-width: 175mm; margin: 0 auto; }
+
+@media print { .menu-page { margin: 0; } }
+@media screen {
+  body { background: #888; padding: 10mm 0; }
+  .menu-page { background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.35); }
+}
+</style>
+</head>
+<body>
+
+<section class="menu-page">
+
+  <header class="page-header">
+    <div class="header-the" id="hdr-the"></div>
+    <div class="wordmark-row"><div class="wordmark" id="hdr-wordmark"></div></div>
+    <div class="location" id="hdr-location"></div>
+    <div class="tagline" id="hdr-tagline"></div>
+    <div class="subtitle" id="hdr-subtitle"></div>
+    <div class="served" id="hdr-served"></div>
+  </header>
+
+  <div class="menu-body" id="dishes"></div>
+
+  <div class="cold-note">
+    <div class="head" id="cold-head"></div>
+    <div class="sub" id="cold-sub"></div>
+  </div>
+
+  <footer class="page-footer">
+    <p class="allergy-note" id="allergy"></p>
+    <p class="company-note" id="company"></p>
+  </footer>
+
+</section>
+
+<script>
+function el(tag, cls, html) {
+  const node = document.createElement(tag);
+  if (cls) node.className = cls;
+  if (html !== undefined) node.innerHTML = html;
+  return node;
+}
+
+// masthead
+document.getElementById("hdr-the").textContent = MENU.header.the;
+document.getElementById("hdr-wordmark").textContent = MENU.header.wordmark;
+document.getElementById("hdr-location").textContent = MENU.header.location;
+document.getElementById("hdr-tagline").textContent = MENU.header.tagline;
+document.getElementById("hdr-subtitle").textContent = MENU.header.subtitle;
+document.getElementById("hdr-served").textContent = MENU.header.served;
+
+// dishes
+const wrap = document.getElementById("dishes");
+for (const dish of MENU.dishes) {
+  const node = el("div", "dish");
+  const line = el("div", "dish-name-price");
+  line.appendChild(el("span", "dish-name", dish.name));
+  line.appendChild(el("span", "dish-price", dish.price));
+  node.appendChild(line);
+  if (dish.desc) node.appendChild(el("div", "dish-desc", dish.desc));
+  wrap.appendChild(node);
+}
+
+// cold sandwich note + footer
+document.getElementById("cold-head").textContent = MENU.coldNote;
+document.getElementById("cold-sub").textContent = MENU.coldSub;
+document.getElementById("allergy").innerHTML = MENU.footer.allergyNote;
+document.getElementById("company").innerHTML = MENU.footer.companyNote;
+</script>
+
+</body>
+</html>

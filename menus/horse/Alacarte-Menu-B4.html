@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<title>The Horse and Hound — À La Carte Menu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+     EDIT THE MENU HERE
+     ============================================================
+     Page size: B4 PORTRAIT (250mm × 355mm)
+
+     Dish format:
+       { name: "Dish Name", price: "00", desc: "Description", note: "(optional)" }
+     Use price: "<em>small</em> 15 / <em>large</em> 22" for dual prices.
+     ============================================================ -->
+<script>
+const MENU = {
+
+  header: {
+    the: "THE",
+    wordmark: "HORSE AND HOUND",
+    location: "KIRK DEIGHTON",
+    tagline: "INDEPENDENT FREE HOUSE",
+  },
+
+  // ---------- NIBBLES ----------
+  nibbles: [
+    { name: "Bread & Butter", price: "4" },
+    { name: "Olives", price: "3" },
+    { name: "Pigs in Blankets", price: "6" },
+    { name: "Cauliflower Fritters", price: "7" },
+  ],
+
+  // ---------- STARTERS ----------
+  starters: [
+    { name: "Soup of the Day", price: "7", desc: "Home-made bread and salted butter" },
+    { name: "Cheese and Meat Board", price: "10", desc: "Daily selection of cheese and cured meat, served with olives, pickles, and sourdough bread" },
+    { name: "Sautéed King Prawns", price: "11", desc: "With spinach and smoky bacon in a garlic cream, served on toasted home-made bread" },
+    { name: "Chicken Liver Pâté", price: "9", desc: "Red onion marmalade, granary toast" },
+  ],
+
+  // ---------- THE TIMELESS CLASSICS ----------
+  classics: [
+    { name: "Pie of the Day", price: "20", desc: "Home-made pie of the day in our crisp shortcrust pastry, served with seasonal veg, mash and proper gravy" },
+    { name: "Horse and Hound Burger", price: "19", desc: "We blend 3 different cuts of prime Yorkshire beef and grill the patty over an open flame. Topped with smoked bacon, Monterey Jack and grilled onions on our homemade burger bun with mustard mayo, tomato relish, lettuce and a side of fries" },
+    { name: "Bangers and Mash", price: "17", desc: "Yorkshire sausages served with a red onion marmalade, rich gravy and seasonal veg" },
+    { name: "Flat Iron Steak", price: "25", desc: "Roast mushroom, confit tomato and skinny fries. Served medium rare, with a choice of mushroom, peppercorn, or blue cheese sauce" },
+    { name: "Fisherman&rsquo;s Pie", price: "20", desc: "A selection of fresh fish in a creamy white wine and dill sauce. Topped with mashed potatoes and an aged cheddar gratin. Served with a side of seasonal greens" },
+    { name: "Beer Battered Haddock", price: "<em>small</em> 15 / <em>large</em> 22", desc: "Fresh haddock in our crisp beer batter with triple-cooked chips and mushy peas" },
+  ],
+
+  // ---------- SEASONAL SPECIALS ----------
+  specials: [
+    { name: "Chargrilled Barnsley Chop", price: "27", desc: "Marinated in garlic, lemon and oregano. Served with Greek lemon potatoes, spinach, feta and jus" },
+    { name: "Tomato and Mozzarella Risotto", price: "17", desc: "With parmesan tuile and herb oil", note: "+ Chicken 5 &nbsp;·&nbsp; + Salmon Fillet 6" },
+    { name: "Seared Fillet of Salmon", price: "23", desc: "Roast new potatoes, charred tenderstem broccoli, crispy capers and romesco sauce" },
+    { name: "Chicken Kiev", price: "22", desc: "Stuffed with garlic and parsley butter. Served with watercress salad and triple cooked chips" },
+  ],
+
+  // ---------- SIDES ----------
+  sides: [
+    { name: "Chips", price: "4" },
+    { name: "Fries", price: "4" },
+    { name: "Buttery Mash", price: "4" },
+    { name: "Seasonal Greens", price: "4" },
+    { name: "Onion Rings", price: "4" },
+    { name: "Cauliflower Cheese", price: "5" },
+    { name: "Mushy Peas", price: "2" },
+    { name: "Roasted Roots", price: "4" },
+    { name: "Red Cabbage", price: "4" },
+  ],
+
+  // ---------- FOOTER ----------
+  footer: {
+    allergyNote: "All our food is prepared in the presence of common allergens but as we prepare everything to order onsite, it&rsquo;s easy, in most cases, to adapt to your needs. Please discuss any special dietary requirements with your server.",
+    companyNote: "The Horse And Hound Wetherby LTD, Registered office &mdash; Horse &amp; Hound (Formerly The Bay Horse), Main Street, Kirk Deighton, Wetherby, LS22 4DZ. Company number &mdash; 14672783. Registered in England &amp; Wales.",
+  },
+};
+</script>
+
+<style>
+:root {
+  --hh-blue: #4A79A8;
+  --charcoal: #1A1A1A;
+  --grey: #5A5A5A;
+  --grey-light: #8A8A8A;
+  --rule: #C6D2DE;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: #fff;
+  color: var(--charcoal);
+  font-family: "Liberation Serif", "Times New Roman", Times, serif;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.menu-page {
+  width: 250mm;
+  min-height: 355mm;
+  margin: 0 auto;
+  padding: 12mm 16mm 12mm;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========== MASTHEAD ========== */
+.page-header { text-align: center; margin-bottom: 4mm; }
+.header-the { font-size: 13pt; letter-spacing: 0.3em; }
+.wordmark-row {
+  display: flex;
+  align-items: center;
+  gap: 6mm;
+  margin: 1mm 0;
+}
+.wordmark-row::before,
+.wordmark-row::after { content: ''; flex: 1; height: 1px; background: var(--charcoal); opacity: 0.5; }
+.wordmark { font-size: 32pt; letter-spacing: 0.06em; white-space: nowrap; }
+.location { font-size: 15pt; letter-spacing: 0.22em; margin-bottom: 1mm; }
+.tagline { font-size: 10pt; letter-spacing: 0.18em; }
+
+/* ========== SECTION HEADINGS ========== */
+.section { margin-bottom: 4mm; }
+.section-heading { display: flex; align-items: center; gap: 5mm; margin-bottom: 3mm; }
+.section-heading::before,
+.section-heading::after { content: ''; flex: 1; height: 1px; background: var(--hh-blue); opacity: 0.45; }
+.section-heading h2 {
+  font-weight: 700;
+  font-size: 17pt;
+  letter-spacing: 0.14em;
+  color: var(--hh-blue);
+  white-space: nowrap;
+}
+
+/* ========== NIBBLES / SIDES ROWS ========== */
+.price-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 12mm;
+  row-gap: 2.5mm;
+}
+.price-item { font-weight: 700; font-size: 11.5pt; white-space: nowrap; }
+.price-item .p { color: var(--hh-blue); margin-left: 2.5mm; }
+
+/* ========== DISHES ========== */
+.dishes-two-col { column-count: 2; column-gap: 10mm; }
+.dish { break-inside: avoid; -webkit-column-break-inside: avoid; page-break-inside: avoid; margin-bottom: 3.2mm; }
+.dish-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4mm;
+}
+.dish-name { font-weight: 700; font-size: 12.5pt; }
+.dish-price { font-weight: 700; font-size: 12pt; color: var(--hh-blue); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.dish-price em { font-style: italic; font-weight: 400; color: var(--charcoal); }
+.dish-desc { font-style: italic; font-size: 10.5pt; color: var(--grey); line-height: 1.32; margin-top: 0.8mm; }
+.dish-note { font-style: italic; font-size: 10pt; color: var(--grey); margin-top: 0.8mm; }
+
+.menu-body { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; }
+
+/* ========== FOOTER ========== */
+.page-footer { text-align: center; border-top: 1px solid var(--rule); padding-top: 3mm; }
+.allergy-note { font-style: italic; font-size: 9.5pt; color: var(--grey); line-height: 1.4; max-width: 190mm; margin: 0 auto 1.6mm; }
+.company-note { font-size: 7.5pt; color: var(--grey-light); line-height: 1.4; max-width: 200mm; margin: 0 auto; }
+
+@media print { .menu-page { margin: 0; } }
+@media screen {
+  body { background: #888; padding: 10mm 0; }
+  .menu-page { background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.35); }
+}
+</style>
+</head>
+<body>
+
+<section class="menu-page">
+
+  <header class="page-header">
+    <div class="header-the" id="hdr-the"></div>
+    <div class="wordmark-row"><div class="wordmark" id="hdr-wordmark"></div></div>
+    <div class="location" id="hdr-location"></div>
+    <div class="tagline" id="hdr-tagline"></div>
+  </header>
+
+  <div class="menu-body">
+    <div class="section">
+      <div class="section-heading"><h2>NIBBLES</h2></div>
+      <div class="price-row" id="nibbles"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-heading"><h2>STARTERS</h2></div>
+      <div class="dishes-two-col" id="starters"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-heading"><h2>THE TIMELESS CLASSICS</h2></div>
+      <div class="dishes-two-col" id="classics"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-heading"><h2>SEASONAL SPECIALS</h2></div>
+      <div class="dishes-two-col" id="specials"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-heading"><h2>SIDES</h2></div>
+      <div class="price-row" id="sides"></div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <p class="allergy-note" id="allergy"></p>
+    <p class="company-note" id="company"></p>
+  </footer>
+
+</section>
+
+<script>
+function el(tag, cls, html) {
+  const node = document.createElement(tag);
+  if (cls) node.className = cls;
+  if (html !== undefined) node.innerHTML = html;
+  return node;
+}
+
+// masthead
+document.getElementById("hdr-the").textContent = MENU.header.the;
+document.getElementById("hdr-wordmark").textContent = MENU.header.wordmark;
+document.getElementById("hdr-location").textContent = MENU.header.location;
+document.getElementById("hdr-tagline").textContent = MENU.header.tagline;
+
+// nibbles + sides price rows
+for (const id of ["nibbles", "sides"]) {
+  const wrap = document.getElementById(id);
+  for (const item of MENU[id]) {
+    wrap.appendChild(el("span", "price-item", item.name + '<span class="p">' + item.price + "</span>"));
+  }
+}
+
+// dish sections
+for (const id of ["starters", "classics", "specials"]) {
+  const wrap = document.getElementById(id);
+  for (const dish of MENU[id]) {
+    const node = el("div", "dish");
+    const line = el("div", "dish-line");
+    line.appendChild(el("span", "dish-name", dish.name));
+    line.appendChild(el("span", "dish-price", dish.price));
+    node.appendChild(line);
+    if (dish.desc) node.appendChild(el("div", "dish-desc", dish.desc));
+    if (dish.note) node.appendChild(el("div", "dish-note", dish.note));
+    wrap.appendChild(node);
+  }
+}
+
+// footer
+document.getElementById("allergy").innerHTML = MENU.footer.allergyNote;
+document.getElementById("company").innerHTML = MENU.footer.companyNote;
+</script>
+
+</body>
+</html>

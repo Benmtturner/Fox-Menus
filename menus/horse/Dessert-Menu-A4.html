@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<title>The Horse and Hound — Dessert Menu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+     EDIT THE MENU HERE
+     ============================================================
+     Page size: A4 PORTRAIT (210mm × 297mm)
+     ============================================================ -->
+<script>
+const MENU = {
+
+  header: {
+    the: "THE",
+    wordmark: "HORSE AND HOUND",
+    location: "KIRK DEIGHTON",
+    subtitle: "DESSERT MENU",
+  },
+
+  // ---------- DESSERTS ----------
+  desserts: [
+    { name: "Chocolate and Amaretto Tart", price: "9", desc: "Vanilla ice cream, nougatine, chocolate crumble, lime and amaretto syrup" },
+    { name: "Elderflower Posset", price: "8", desc: "Gooseberry compote, candied pecan crumble, lemon balm" },
+    { name: "Crumble of the Day", price: "8", desc: "With our amazing, home-made vanilla custard" },
+    { name: "Affogato", price: "7", desc: "Two scoops of Madagascan vanilla ice cream with a shot of espresso, served with homemade cantucci. Add a liqueur of your choosing for an extra &pound;3" },
+    { name: "Sticky Toffee Pudding", price: "8", desc: "Rich toffee sauce, clotted cream and honeycomb ice cream" },
+    { name: "Trio of Ice Cream", price: "7.5", desc: "Choose from Madagascan vanilla, chocolate &amp; sea salt, strawberry or clotted cream &amp; honeycomb ice cream and/or lemon or raspberry sorbet" },
+    { name: "Yorkshire Berry Pavlova", price: "8", desc: "Crisp meringue, chantilly cream and locally sourced summer berries" },
+    { name: "A Platter of Handpicked Cheeses", price: "10.5", desc: "Served with chutney, celery and apple, with a selection of biscuits. Add a glass of port &pound;5" },
+  ],
+
+  // ---------- COFFEES ----------
+  coffees: [
+    { name: "Americano", price: "3" },
+    { name: "Latte", price: "4" },
+    { name: "Cappuccino", price: "4" },
+    { name: "Espresso", price: "2" },
+    { name: "Flat White", price: "4" },
+    { name: "Mocha", price: "4" },
+  ],
+  liqueurCoffees: [
+    { name: "Irish", price: "7" },
+    { name: "French", price: "7" },
+    { name: "Calypso", price: "7" },
+  ],
+
+  // ---------- DIGESTIFS ----------
+  digestifs: [
+    { name: "Tia Maria", price: "3.3" },
+    { name: "Disaronno", price: "3.5" },
+    { name: "Drambuie", price: "4" },
+    { name: "Grand Marnier", price: "4" },
+    { name: "Baileys", price: "4.25" },
+    { name: "Sambuca", price: "3.3" },
+  ],
+
+  // ---------- FOOTER ----------
+  footer: {
+    allergyNote: "All our food is prepared in the presence of common allergens but as we prepare everything to order onsite, it&rsquo;s easy, in most cases, to adapt to your needs. Please discuss any special dietary requirements with your server.",
+    companyNote: "The Horse And Hound Wetherby LTD, Registered office &mdash; Horse &amp; Hound (Formerly The Bay Horse), Main Street, Kirk Deighton, Wetherby, LS22 4DZ. Company number &mdash; 14672783. Registered in England &amp; Wales.",
+  },
+};
+</script>
+
+<style>
+:root {
+  --hh-blue: #4A79A8;
+  --charcoal: #1A1A1A;
+  --grey: #5A5A5A;
+  --grey-light: #8A8A8A;
+  --rule: #C6D2DE;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: #fff;
+  color: var(--charcoal);
+  font-family: "Liberation Serif", "Times New Roman", Times, serif;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.menu-page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  padding: 11mm 15mm 10mm;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========== MASTHEAD ========== */
+.page-header { text-align: center; margin-bottom: 4mm; }
+.header-the { font-size: 11pt; letter-spacing: 0.3em; }
+.wordmark { font-size: 26pt; letter-spacing: 0.06em; margin: 0.5mm 0; }
+.location { font-size: 13pt; letter-spacing: 0.22em; margin-bottom: 2mm; }
+.subtitle {
+  font-weight: 700;
+  font-size: 24pt;
+  letter-spacing: 0.1em;
+  color: var(--hh-blue);
+}
+
+/* ========== DESSERTS (centred column) ========== */
+.menu-body { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; }
+.dish { text-align: center; }
+.dish-name { font-weight: 700; font-size: 13pt; }
+.dish-desc {
+  font-style: italic;
+  font-size: 10.5pt;
+  color: var(--grey);
+  line-height: 1.35;
+  max-width: 140mm;
+  margin: 0.6mm auto 0;
+}
+.dish-price { font-weight: 700; font-size: 11.5pt; color: var(--hh-blue); margin-top: 0.6mm; }
+
+/* ========== COFFEES / DIGESTIFS ========== */
+.drinks {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 10mm;
+  margin-top: 4mm;
+  border-top: 1px solid var(--rule);
+  padding-top: 4mm;
+}
+.drinks h2 {
+  font-weight: 700;
+  font-size: 15pt;
+  letter-spacing: 0.12em;
+  color: var(--hh-blue);
+  text-align: center;
+  margin-bottom: 2.5mm;
+}
+.drink-cols { display: grid; grid-template-columns: 1fr 1fr; column-gap: 8mm; }
+.drink-list { font-size: 10.5pt; }
+.drink-list .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.7mm 0;
+}
+.drink-list .row .n { font-weight: 700; }
+.drink-list .row .p { font-weight: 700; color: var(--hh-blue); font-variant-numeric: tabular-nums; }
+.drink-list .row.label .n { color: var(--hh-blue); }
+
+/* ========== FOOTER ========== */
+.page-footer { text-align: center; border-top: 1px solid var(--rule); padding-top: 2.5mm; margin-top: 4mm; }
+.allergy-note { font-style: italic; font-size: 8.5pt; color: var(--grey); line-height: 1.4; max-width: 165mm; margin: 0 auto 1.4mm; }
+.company-note { font-size: 7pt; color: var(--grey-light); line-height: 1.4; max-width: 175mm; margin: 0 auto; }
+
+@media print { .menu-page { margin: 0; } }
+@media screen {
+  body { background: #888; padding: 10mm 0; }
+  .menu-page { background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.35); }
+}
+</style>
+</head>
+<body>
+
+<section class="menu-page">
+
+  <header class="page-header">
+    <div class="header-the" id="hdr-the"></div>
+    <div class="wordmark" id="hdr-wordmark"></div>
+    <div class="location" id="hdr-location"></div>
+    <div class="subtitle" id="hdr-subtitle"></div>
+  </header>
+
+  <div class="menu-body" id="desserts"></div>
+
+  <div class="drinks">
+    <div>
+      <h2>COFFEES</h2>
+      <div class="drink-cols">
+        <div class="drink-list" id="coffees-a"></div>
+        <div class="drink-list" id="coffees-b"></div>
+      </div>
+    </div>
+    <div>
+      <h2>DIGESTIFS</h2>
+      <div class="drink-list" id="digestifs"></div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <p class="allergy-note" id="allergy"></p>
+    <p class="company-note" id="company"></p>
+  </footer>
+
+</section>
+
+<script>
+function el(tag, cls, html) {
+  const node = document.createElement(tag);
+  if (cls) node.className = cls;
+  if (html !== undefined) node.innerHTML = html;
+  return node;
+}
+
+function drinkRow(item, extraCls) {
+  const row = el("div", "row" + (extraCls ? " " + extraCls : ""));
+  row.appendChild(el("span", "n", item.name));
+  if (item.price) row.appendChild(el("span", "p", item.price));
+  return row;
+}
+
+// masthead
+document.getElementById("hdr-the").textContent = MENU.header.the;
+document.getElementById("hdr-wordmark").textContent = MENU.header.wordmark;
+document.getElementById("hdr-location").textContent = MENU.header.location;
+document.getElementById("hdr-subtitle").textContent = MENU.header.subtitle;
+
+// desserts
+const dessertsWrap = document.getElementById("desserts");
+for (const dish of MENU.desserts) {
+  const node = el("div", "dish");
+  node.appendChild(el("div", "dish-name", dish.name));
+  if (dish.desc) node.appendChild(el("div", "dish-desc", dish.desc));
+  node.appendChild(el("div", "dish-price", dish.price));
+  dessertsWrap.appendChild(node);
+}
+
+// coffees: first column plain coffees, second column liqueur coffees
+const colA = document.getElementById("coffees-a");
+const colB = document.getElementById("coffees-b");
+for (const item of MENU.coffees) colA.appendChild(drinkRow(item));
+colB.appendChild(drinkRow({ name: "Liqueur Coffees:" }, "label"));
+for (const item of MENU.liqueurCoffees) colB.appendChild(drinkRow(item));
+
+// digestifs
+const digWrap = document.getElementById("digestifs");
+for (const item of MENU.digestifs) digWrap.appendChild(drinkRow(item));
+
+// footer
+document.getElementById("allergy").innerHTML = MENU.footer.allergyNote;
+document.getElementById("company").innerHTML = MENU.footer.companyNote;
+</script>
+
+</body>
+</html>
