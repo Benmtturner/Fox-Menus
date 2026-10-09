@@ -9,6 +9,22 @@
      EDIT THE MENU HERE
      ============================================================
      Page size: A4 PORTRAIT (210mm × 297mm)
+
+     - HEADER:    pub name / location / "DESSERT MENU" title
+     - DESSERTS:  centred dishes, spread evenly down the page
+     - COFFEES / LIQUEUR COFFEES / DIGESTIFS:
+                  name + price lists at the bottom
+     - FOOTER:    allergen + company registration notes
+     - WATERMARK: faint horse & hound artwork behind the page.
+                  To adjust, edit ".watermark img" in the styles
+                  below — "opacity" for strength, "width" for size.
+
+     Dish format:
+       { name: "Dish Name", price: "00", desc: "Description" }
+     Drinks format:
+       { name: "Drink Name", price: "0.0" }
+
+     To change any list, edit below — the page builds itself.
      ============================================================ -->
 <script>
 const MENU = {
@@ -65,6 +81,9 @@ const MENU = {
 };
 </script>
 
+<!-- ============================================================
+     STYLES — edit below to change the design
+     ============================================================ -->
 <style>
 :root {
   --hh-blue: #4A79A8;

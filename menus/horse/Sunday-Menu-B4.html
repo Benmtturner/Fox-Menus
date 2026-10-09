@@ -10,9 +10,23 @@
      ============================================================
      Page size: B4 PORTRAIT (250mm × 355mm)
 
+     - HEADER:    pub name / location / tagline at top
+     - NIBBLES:   one-line priced items in a centred row
+     - STARTERS / SUNDAY ROAST / PUB CLASSICS:
+                  two-column dishes with descriptions
+     - roastNote: the bold "all our roasts are served with..."
+                  line under the Sunday Roast section
+     - SIDES:     one-line priced items in a centred row
+     - FOOTER:    allergen + company registration notes
+     - WATERMARK: faint horse & hound artwork behind the page.
+                  To adjust, edit ".watermark img" in the styles
+                  below — "opacity" for strength, "width" for size.
+
      Dish format:
        { name: "Dish Name", price: "00", desc: "Description", note: "(optional)" }
      Use price: "<em>small</em> 15 / <em>large</em> 22" for dual prices.
+
+     To change any list, edit below — the page builds itself.
      ============================================================ -->
 <script>
 const MENU = {
@@ -77,6 +91,9 @@ const MENU = {
 };
 </script>
 
+<!-- ============================================================
+     STYLES — edit below to change the design
+     ============================================================ -->
 <style>
 :root {
   --hh-blue: #4A79A8;
