@@ -1,4 +1,4 @@
-## menus/ — your 7 production menus
+## menus/fox/ — The Fox production menus
 
 | File | Page Size | Type |
 |---|---|---|
@@ -177,7 +177,7 @@ Generate a test PDF to confirm everything works:
 
 ```bash
 # Linux/macOS
-python3 scripts/a5.py menus/Bar-Menu-A5.html
+python3 scripts/a5.py menus/fox/Bar-Menu-A5.html
 
 # Windows
 python scripts\a5.py menus\Bar-Menu-A5.html
@@ -185,7 +185,7 @@ python scripts\a5.py menus\Bar-Menu-A5.html
 
 If successful, you should see:
 ```
-PDF created: menus/Bar-Menu-A5.pdf
+PDF created: menus/fox/Bar-Menu-A5.pdf
 Pages: 1
 Size: XX.X KB
 ```
@@ -222,7 +222,7 @@ pip3 install playwright pypdf --break-system-packages
 Make sure you're using the same Python version for installation and running:
 ```bash
 # If installed with pip3, use python3 to run
-python3 scripts/a5.py menus/Bar-Menu-A5.html
+python3 scripts/a5.py menus/fox/Bar-Menu-A5.html
 ```
 
 ---
@@ -232,18 +232,18 @@ python3 scripts/a5.py menus/Bar-Menu-A5.html
 
 ```bash
 # À la carte (SRA4):
-python3 scripts/sra4.py menus/Main-Menu-SRA4.html
-python3 scripts/sra4.py menus/Alacarte-Menu-SRA4.html
+python3 scripts/sra4.py menus/fox/Main-Menu-SRA4.html
+python3 scripts/sra4.py menus/fox/Alacarte-Menu-SRA4.html
 
 # Sunday menu (A4):
-python3 scripts/a4.py menus/Sunday-Menu-A4.html
+python3 scripts/a4.py menus/fox/Sunday-Menu-A4.html
 
 # Any A5 menu:
-python3 scripts/a5.py menus/Bar-Menu-A5.html
-python3 scripts/a5.py menus/Lunch-Specials-A5.html
-python3 scripts/a5.py menus/Supper-Club-A5.html
-python3 scripts/a5.py menus/Daily-Specials-A5.html
-python3 scripts/a5.py menus/Dessert-Menu-A5.html
+python3 scripts/a5.py menus/fox/Bar-Menu-A5.html
+python3 scripts/a5.py menus/fox/Lunch-Specials-A5.html
+python3 scripts/a5.py menus/fox/Supper-Club-A5.html
+python3 scripts/a5.py menus/fox/Daily-Specials-A5.html
+python3 scripts/a5.py menus/fox/Dessert-Menu-A5.html
 ```
 
 Each script outputs a PDF with the same name as the input HTML (e.g. `Menu-SRA4.html` → `Menu-SRA4.pdf`). 

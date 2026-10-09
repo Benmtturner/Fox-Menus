@@ -3,8 +3,8 @@ name: Generate PDFs from HTML Menus
 on:
   push:
     paths:
-      - 'menus/*.html'
-      - 'documents/*.html'
+      - 'menus/**/*.html'
+      - 'documents/**/*.html'
   workflow_dispatch:
 
 jobs:
@@ -72,8 +72,8 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
 
-          # Add all PDFs (new and changed)
-          git add menus/*.pdf documents/*.pdf
+          # Add all PDFs (new and changed) in any pub subfolder
+          git add 'menus/**/*.pdf' 'documents/**/*.pdf'
 
           # Check if there are staged changes
           if git diff --cached --quiet; then
@@ -83,14 +83,15 @@ jobs:
             git push
           fi
 
-      - name: Deploy menus to WordPress (SiteGround)
+      - name: Deploy Fox menus to WordPress (SiteGround)
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           port: 18765
-          source: "menus/*.html,menus/*.pdf"
-          target: "/home/customer/www/foxatwalton.com/public_html/wp-content/uploads/"
-          strip_components: 0
+          source: "menus/fox/*.html,menus/fox/*.pdf"
+          # strip menus/fox/ so files land in uploads/menus/ exactly as before
+          target: "/home/customer/www/foxatwalton.com/public_html/wp-content/uploads/menus/"
+          strip_components: 2
           overwrite: true
