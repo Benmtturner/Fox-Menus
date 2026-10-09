@@ -174,13 +174,14 @@ html, body {
 .watermark {
   position: absolute;
   inset: 0;
+  overflow: hidden;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   z-index: 0;
   pointer-events: none;
 }
-.watermark img { width: 82%; height: auto; opacity: 0.14; }
+.watermark img { width: 135%; max-width: none; flex: none; height: auto; opacity: 0.14; margin-bottom: -3%; }
 
 @media print { .menu-page { margin: 0; } }
 @media screen {
