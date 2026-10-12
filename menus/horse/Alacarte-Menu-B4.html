@@ -50,7 +50,7 @@ const MENU = {
     { name: "Smoked Haddock Florentine", price: "11", desc: "With wilted spinach, mornay sauce and a cheddar crumb" },
     { name: "Chicken Liver Pâté", price: "9", desc: "Red onion marmalade, granary toast" },
     { name: "Mac n Cheese Bites", price: "11", desc: "Baconaise, parmesan" },
-    { name: "Saute King Prawns", price: "10", desc: "cherry tomatoes, chorizo and garlic cream" },
+    { name: "Sautéed King Prawns", price: "10", desc: "Cherry tomatoes, chorizo and garlic cream" },
   ],
 
   // ---------- THE TIMELESS CLASSICS ----------
@@ -65,10 +65,10 @@ const MENU = {
 
   // ---------- SEASONAL SPECIALS ----------
   specials: [
-    { name: "Slow Cooked Lamb Shank", price: "27", desc: "Braised with garlic, rosemary and white wine.  Served with buttery mash, Mediterranean Vegetables and jus" },
+    { name: "Slow Cooked Lamb Shank", price: "27", desc: "Braised with garlic, rosemary and white wine. Served with buttery mash, Mediterranean vegetables and jus" },
     { name: "Wild Mushroom & Tarragon Risotto", price: "17", desc: "With parmesan tuile and herb oil", note: "+ Chicken 5 &nbsp;·&nbsp; + Salmon Fillet 6" },
     { name: "Baked Pollock", price: "26", desc: "Crushed new potatoes, green beans, cider and mussel cream" },
-    { name: "Chicken Cordon Bleu", price: "22", desc: "Stuffed with Yokshire ham and Gruyere. Served with creamed spinach, cranberry sauce and triple cooked chips" },
+    { name: "Chicken Cordon Bleu", price: "22", desc: "Stuffed with Yorkshire ham and Gruyère. Served with creamed spinach, cranberry sauce and triple cooked chips" },
   ],
 
   // ---------- SIDES ----------
@@ -161,9 +161,18 @@ html, body {
 }
 .price-item { font-weight: 700; font-size: 11.5pt; white-space: nowrap; }
 .price-item .p { color: var(--hh-blue); margin-left: 2.5mm; }
+#nibbles { column-gap: 26mm; }
+#sides .price-row + .price-row { margin-top: 2.5mm; }
 
 /* ========== DISHES ========== */
-.dishes-two-col { column-count: 2; column-gap: 10mm; }
+/* two columns laid out as a grid so left/right dishes align in rows */
+.dishes-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-flow: column;
+  column-gap: 10mm;
+  align-items: start;
+}
 .dish { break-inside: avoid; -webkit-column-break-inside: avoid; page-break-inside: avoid; margin-bottom: 3.2mm; }
 .dish-line {
   display: flex;
@@ -242,7 +251,7 @@ html, body {
 
     <div class="section">
       <div class="section-heading"><h2>SIDES</h2></div>
-      <div class="price-row" id="sides"></div>
+      <div id="sides"></div>
     </div>
   </div>
 
@@ -267,17 +276,28 @@ document.getElementById("hdr-wordmark").textContent = MENU.header.wordmark;
 document.getElementById("hdr-location").textContent = MENU.header.location;
 document.getElementById("hdr-tagline").textContent = MENU.header.tagline;
 
-// nibbles + sides price rows
-for (const id of ["nibbles", "sides"]) {
-  const wrap = document.getElementById(id);
-  for (const item of MENU[id]) {
-    wrap.appendChild(el("span", "price-item", item.name + '<span class="p">' + item.price + "</span>"));
-  }
+function priceItem(item) {
+  return el("span", "price-item", item.name + '<span class="p">' + item.price + "</span>");
+}
+
+// nibbles: single centred row
+for (const item of MENU.nibbles) document.getElementById("nibbles").appendChild(priceItem(item));
+
+// sides: split evenly across two centred rows
+const sidesWrap = document.getElementById("sides");
+const firstRowCount = Math.ceil(MENU.sides.length / 2);
+for (const rowItems of [MENU.sides.slice(0, firstRowCount), MENU.sides.slice(firstRowCount)]) {
+  if (!rowItems.length) continue;
+  const row = el("div", "price-row");
+  for (const item of rowItems) row.appendChild(priceItem(item));
+  sidesWrap.appendChild(row);
 }
 
 // dish sections
 for (const id of ["starters", "classics", "specials"]) {
   const wrap = document.getElementById(id);
+  // fix the row count so items fill down the left column then the right
+  wrap.style.gridTemplateRows = "repeat(" + Math.ceil(MENU[id].length / 2) + ", auto)";
   for (const dish of MENU[id]) {
     const node = el("div", "dish");
     const line = el("div", "dish-line");
