@@ -32,7 +32,10 @@ jobs:
         run: |
           pip install playwright pypdf
           python -m playwright install chromium
-          python -m playwright install-deps chromium
+          # Extra system fonts via apt — nice to have, but the runner image
+          # already carries everything Chromium needs for our menus, so an
+          # Ubuntu mirror outage must not fail the whole run
+          python -m playwright install-deps chromium || echo "install-deps failed (apt mirror issue) — continuing with preinstalled libs"
 
       - name: Detect changed HTML files and generate PDFs
         run: |
