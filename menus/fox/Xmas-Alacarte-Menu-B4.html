@@ -76,6 +76,8 @@ const MENU = {
     phone: "01937 842192",
     web: "foxatwalton.com",
     allergyNote: "All food is prepared in the presence of known allergens. Please inform your server of any allergies or dietary requirements.  Full allergen information available on request.",
+    wifiNetwork: "The Fox WIFI",
+    wifiPassword: "Food&Drink",
   },
 };
 </script>
@@ -442,6 +444,14 @@ html, body {
   color: var(--rust);
 }
 
+.footer-wifi {
+  font-family: "Liberation Serif", "Times New Roman", Times, serif;
+  font-size: 8.5pt;
+  letter-spacing: 0.14em;
+  color: var(--rust);
+  font-weight: 600;
+}
+
 /* ========== Print ========== */
 @media print {
   @page {
@@ -504,6 +514,7 @@ html, body {
   <footer class="page-footer">
     <div class="footer-allergy" id="f-allergy"></div>
     <div class="footer-contact" id="f-contact"></div>
+    <div class="footer-wifi" id="f-wifi"></div>
   </footer>
 
 </article>
@@ -547,6 +558,8 @@ document.getElementById('sides-list').innerHTML =
 document.getElementById('f-allergy').textContent = MENU.footer.allergyNote;
 document.getElementById('f-contact').innerHTML =
   `${MENU.footer.address}<span class="sep">·</span>${MENU.footer.phone}<span class="sep">·</span>${MENU.footer.web}`;
+document.getElementById('f-wifi').innerHTML =
+  `WiFi&nbsp;·&nbsp;${MENU.footer.wifiNetwork}<span class="sep">·</span>Password&nbsp;${MENU.footer.wifiPassword}`;
 </script>
 
 </body>
