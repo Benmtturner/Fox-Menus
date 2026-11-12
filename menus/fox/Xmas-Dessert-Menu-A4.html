@@ -2,7 +2,7 @@
 <html lang="en-GB">
 <head>
 <meta charset="UTF-8">
-<title>The Fox at Walton — Christmas Dessert Menu</title>
+<title>The Fox at Walton — December Dessert Menu</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- ============================================================
@@ -16,7 +16,7 @@ const MENU = {
     flourish: "EST · WALTON · YORKSHIRE",
     wordmark: "THE FOX",
     location: "AT WALTON",
-    subtitle: "Christmas Dessert Menu",
+    subtitle: "December Dessert Menu",
   },
 
   dishes: [
@@ -147,7 +147,8 @@ html, body {
 }
 
 /* ========== MENU BODY ========== */
-.menu-body { flex: 1; }
+.menu-body { flex: 1; display: flex; flex-direction: column; }
+.menu-body .dishes-list { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; }
 
 .dishes-list {
   text-align: center;
