@@ -37,6 +37,13 @@ const MENU = {
     subtitle: "DECEMBER À LA CARTE",
   },
 
+  // ---------- NIBBLES ----------
+  nibbles: [
+    { name: "Bread & Butter", price: "4" },
+    { name: "Olives", price: "3" },
+    { name: "Pigs in Blankets", price: "6" },
+  ],
+
   // ---------- STARTERS ----------
   starters: [
     { name: "Smoked Salmon Rillettes", price: "9", desc: "Caperberries, pickles, whipped butter, granary toast" },
@@ -45,18 +52,35 @@ const MENU = {
     { name: "Twice Baked Cheese Soufflé", price: "9", desc: "Celeriac and apple velouté, walnut oil" },
   ],
 
-  // ---------- MAINS ----------
-  mains: [
+  // ---------- THE TIMELESS CLASSICS ----------
+  classics: [
+    { name: "Pie of the Day", price: "20", desc: "Home-made pie of the day in our crisp shortcrust pastry, served with seasonal veg, mash and proper gravy" },
+    { name: "Horse and Hound Burger", price: "19", desc: "We blend 3 different cuts of prime Yorkshire beef and grill the patty over an open flame. Topped with smoked bacon, Monterey Jack and grilled onions on our homemade burger bun with mustard mayo, tomato relish, lettuce and a side of fries" },
+    { name: "Bangers and Mash", price: "17", desc: "Yorkshire sausages served with a red onion marmalade, rich gravy and seasonal veg" },
+    { name: "Flat Iron Steak", price: "25", desc: "Roast mushroom, confit tomato and skinny fries. Served medium rare, with a choice of mushroom, peppercorn, or blue cheese sauce" },
+    { name: "Fisherman&rsquo;s Pie", price: "20", desc: "A selection of fresh fish in a creamy white wine and dill sauce. Topped with mashed potatoes and an aged cheddar gratin. Served with a side of seasonal greens" },
+    { name: "Beer Battered Haddock", price: "<em>small</em> 15 / <em>large</em> 22", desc: "Fresh haddock in our crisp beer batter with triple-cooked chips and mushy peas" },
+  ],
+
+  // ---------- SEASONAL SPECIALS (festive mains) ----------
+  specials: [
     { name: "Braised Featherblade of Beef", price: "25", desc: "Buttery mash, roast shallots and carrots, Guinness sauce" },
     { name: "Turkey Paupiette", price: "23", desc: "Buttery mash, sprouts and chestnuts, cranberry relish, red wine gravy" },
     { name: "Baked Sea Bream", price: "24", desc: "Herb and almond crumb, Calabrian peppers and potatoes, pesto cream" },
     { name: "Squash & Cranberry Nut Roast", price: "21", desc: "Bread sauce, honey roast parsnips, cranberry relish, roast vegetable demi-glace" },
   ],
 
-  // ---------- DESSERTS ----------
-  desserts: [
-    { name: "White Chocolate Blondie", price: "9", desc: "Chocolate crémeux, honeycomb ice cream" },
-    { name: "Cranberry, Orange and Walnut Bread Pudding", price: "8", desc: "Proper custard" },
+  // ---------- SIDES ----------
+  sides: [
+    { name: "Chips", price: "4" },
+    { name: "Fries", price: "4" },
+    { name: "Buttery Mash", price: "4" },
+    { name: "Seasonal Greens", price: "4" },
+    { name: "Onion Rings", price: "4" },
+    { name: "Cauliflower Cheese", price: "5" },
+    { name: "Mushy Peas", price: "2" },
+    { name: "Roasted Roots", price: "4" },
+    { name: "Red Cabbage", price: "4" },
   ],
 
   // ---------- FOOTER ----------
@@ -207,18 +231,28 @@ html, body {
 
   <div class="menu-body">
     <div class="section">
+      <div class="section-heading"><h2>NIBBLES</h2></div>
+      <div class="price-row" id="nibbles"></div>
+    </div>
+
+    <div class="section">
       <div class="section-heading"><h2>STARTERS</h2></div>
       <div class="dishes-two-col" id="starters"></div>
     </div>
 
     <div class="section">
-      <div class="section-heading"><h2>MAINS</h2></div>
-      <div class="dishes-two-col" id="mains"></div>
+      <div class="section-heading"><h2>THE TIMELESS CLASSICS</h2></div>
+      <div class="dishes-two-col" id="classics"></div>
     </div>
 
     <div class="section">
-      <div class="section-heading"><h2>DESSERTS</h2></div>
-      <div class="dishes-two-col" id="desserts"></div>
+      <div class="section-heading"><h2>SEASONAL SPECIALS</h2></div>
+      <div class="dishes-two-col" id="specials"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-heading"><h2>SIDES</h2></div>
+      <div id="sides"></div>
     </div>
   </div>
 
@@ -244,8 +278,25 @@ document.getElementById("hdr-location").textContent = MENU.header.location;
 document.getElementById("hdr-tagline").textContent = MENU.header.tagline;
 document.getElementById("hdr-subtitle").textContent = MENU.header.subtitle;
 
+function priceItem(item) {
+  return el("span", "price-item", item.name + '<span class="p">' + item.price + "</span>");
+}
+
+// nibbles: single centred row
+for (const item of MENU.nibbles) document.getElementById("nibbles").appendChild(priceItem(item));
+
+// sides: split evenly across two centred rows
+const sidesWrap = document.getElementById("sides");
+const firstRowCount = Math.ceil(MENU.sides.length / 2);
+for (const rowItems of [MENU.sides.slice(0, firstRowCount), MENU.sides.slice(firstRowCount)]) {
+  if (!rowItems.length) continue;
+  const row = el("div", "price-row");
+  for (const item of rowItems) row.appendChild(priceItem(item));
+  sidesWrap.appendChild(row);
+}
+
 // dish sections
-for (const id of ["starters", "mains", "desserts"]) {
+for (const id of ["starters", "classics", "specials"]) {
   const wrap = document.getElementById(id);
   // fix the row count so items fill down the left column then the right
   wrap.style.gridTemplateRows = "repeat(" + Math.ceil(MENU[id].length / 2) + ", auto)";
