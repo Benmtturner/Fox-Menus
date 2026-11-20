@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<title>The Fox at Walton — Festive Plant-Based Menu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+     FESTIVE PLANT-BASED MENU — 4 / 4 / 3
+     Built from dishes already on the Fox festive menus
+     (A La Carte, Dessert, Festive Express, Party & Grand),
+     each adapted to be fully plant-based.
+     Christmas Day & Boxing Day menus deliberately excluded.
+     ============================================================ -->
+<script>
+const MENU = {
+  header: {
+    flourish: "EST · WALTON · YORKSHIRE",
+    wordmark: "THE FOX",
+    location: "AT WALTON",
+    tagline: "Festive Plant-Based Menu",
+    subtitle: "Four · Four · Three",
+  },
+
+  starters: [
+    { name: "Roast Celeriac & Truffle Velouté", desc: "Chestnut crumb & crispy sage" },
+    { name: "Roasted Beetroot & Candied Walnut", desc: "Pickled shallot, watercress & maple" },
+    { name: "Festive Bread & Tapenade", desc: "Warm bread, whipped butter & olive tapenade" },
+    { name: "Crispy Sriracha Cauliflower", desc: "Sriracha glaze & toasted sesame" },
+  ],
+
+  mains: [
+    { name: "Truffled Turnip & Wild Mushroom Wellington", desc: "Creamed potatoes, winter greens & rich vegetable gravy" },
+    { name: "Bangers & Mash", desc: "Plant sausages, creamed potato, red onion marmalade, onion gravy & tenderstem" },
+    { name: "Sag Aloo Pie", desc: "Spiced spinach & potato, winter greens & vegetable gravy" },
+    { name: "Festive Nut Roast", desc: "Roast potatoes, kale, chestnuts & Madeira jus" },
+  ],
+
+  desserts: [
+    { name: "Mulled Apple & Hawkstone Cider Crumble", desc: "Plant-based vanilla ice cream" },
+    { name: "Plant-Based Vanilla Ice Cream", desc: "Warm mulled berries" },
+    { name: "Spiced Poached Pear", desc: "Vanilla panna cotta & gingerbread crumb" },
+  ],
+
+  footer: {
+    address: "The Fox at Walton · Walton · Wetherby · LS23 7DQ",
+    phone: "01937 842192",
+    web: "foxatwalton.com",
+    allergyNote: "Every dish on this menu is prepared plant-based to order. All food is prepared in a kitchen where the 14 regulated allergens are present — these dishes still contain gluten, nuts, soya, sesame and sulphites. Please inform your server of any allergies; full allergen information available on request.",
+  },
+};
+</script>
+
+<style>
+:root {
+  --rust: #8B3A1F;
+  --rust-dark: #6B2A15;
+  --forest: #2D4A2B;
+  --charcoal: #1A1A1A;
+  --grey: #5A5A5A;
+  --grey-light: #8A8A8A;
+  --cream: #FBF8F3;
+  --rule: #D4C9B8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: #E8E4DB;
+  color: var(--charcoal);
+  font-family: "Liberation Serif", "Times New Roman", Times, serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.menu-page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 20px auto;
+  padding: 13mm 18mm 12mm;
+  background: #fff;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.menu-page::before, .menu-page::after {
+  content: '';
+  position: absolute;
+  width: 14mm; height: 14mm;
+  border: 1px solid var(--rust);
+  opacity: 0.25;
+  pointer-events: none;
+}
+.menu-page::before { top: 7mm; left: 7mm; border-right: none; border-bottom: none; }
+.menu-page::after { bottom: 7mm; right: 7mm; border-left: none; border-top: none; }
+
+/* Header */
+.page-header { text-align: center; padding-bottom: 4mm; border-bottom: 1px solid var(--rule); margin-bottom: 5mm; }
+.header-flourish-top { font-size: 9pt; letter-spacing: 0.5em; color: var(--rust); font-weight: 500; margin-bottom: 2mm; }
+.wordmark { font-weight: 700; font-size: 46pt; letter-spacing: 0.14em; line-height: 1; margin-bottom: 2.5mm; }
+.location { font-size: 10pt; letter-spacing: 0.4em; color: var(--grey); margin-bottom: 4mm; }
+.tagline-wrapper { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.tagline-wrapper .rule { width: 42px; height: 1px; background: var(--forest); opacity: 0.4; }
+.tagline { font-style: italic; font-weight: 500; font-size: 15pt; color: var(--forest); }
+.subtitle { font-size: 9pt; letter-spacing: 0.45em; color: var(--grey-light); margin-top: 3.5mm; text-transform: uppercase; }
+
+/* Body */
+.menu-body { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; }
+.section { margin-bottom: 3mm; }
+
+.section-heading { text-align: center; margin-bottom: 4mm; display: flex; align-items: center; justify-content: center; gap: 8mm; }
+.section-heading::before, .section-heading::after { content: ''; flex: 1; max-width: 55mm; height: 1px; background: var(--rust); opacity: 0.3; }
+.section-heading h2 { font-weight: 600; font-size: 15pt; letter-spacing: 0.45em; color: var(--rust); white-space: nowrap; }
+
+.dish { text-align: center; margin-bottom: 3.5mm; }
+.dish:last-child { margin-bottom: 0; }
+.dish-name { font-weight: 600; font-size: 13.5pt; color: var(--charcoal); letter-spacing: 0.01em; }
+.dish-desc { font-style: italic; font-size: 11pt; color: var(--grey); line-height: 1.4; max-width: 140mm; margin: 1mm auto 0; }
+
+/* Footer */
+.page-footer { margin-top: 5mm; padding-top: 4mm; border-top: 1px solid var(--rule); text-align: center; }
+.allergy-note { font-style: italic; font-size: 8.5pt; color: var(--grey); line-height: 1.5; max-width: 165mm; margin: 0 auto 3mm; }
+.footer-contact { font-size: 9pt; letter-spacing: 0.08em; color: var(--rust); }
+
+
+@media print {
+  html, body { background: #fff; }
+  .menu-page { box-shadow: none; margin: 0; zoom: 0.95; background: #fff; min-height: 0; }
+  @page { size: A4 portrait; margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="menu-page">
+  <header class="page-header">
+    <div class="header-flourish-top">EST · WALTON · YORKSHIRE</div>
+    <div class="wordmark">THE FOX</div>
+    <div class="location">AT WALTON</div>
+    <div class="tagline-wrapper"><span class="rule"></span><span class="tagline">Festive Plant-Based Menu</span><span class="rule"></span></div>
+  </header>
+
+  <div class="menu-body">
+    <section class="section">
+      <div class="section-heading"><h2>STARTERS</h2></div>
+      <div id="starters"></div>
+    </section>
+    <section class="section">
+      <div class="section-heading"><h2>MAINS</h2></div>
+      <div id="mains"></div>
+    </section>
+    <section class="section">
+      <div class="section-heading"><h2>DESSERTS</h2></div>
+      <div id="desserts"></div>
+    </section>
+  </div>
+
+  <footer class="page-footer">
+    <div class="allergy-note" id="allergy"></div>
+    <div class="footer-contact" id="contact"></div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  function dishHTML(d) {
+    return '<div class="dish"><div class="dish-name">' + d.name + '</div>' +
+           (d.desc ? '<div class="dish-desc">' + d.desc + '</div>' : '') + '</div>';
+  }
+  document.getElementById("starters").innerHTML = MENU.starters.map(dishHTML).join("");
+  document.getElementById("mains").innerHTML = MENU.mains.map(dishHTML).join("");
+  document.getElementById("desserts").innerHTML = MENU.desserts.map(dishHTML).join("");
+  document.getElementById("allergy").textContent = MENU.footer.allergyNote;
+  document.getElementById("contact").textContent =
+    MENU.footer.address + " · " + MENU.footer.phone + " · " + MENU.footer.web;
+})();
+</script>
+</body>
+</html>
